@@ -3,6 +3,15 @@
 // ============================================================
 
 document.addEventListener("DOMContentLoaded", () => {
+  /* ---------- Feature gates ---------- */
+  // Elements with [data-feature] are shown only when the matching flag in
+  // FEATURES (data.js) is true; otherwise they are removed from the DOM.
+  document.querySelectorAll("[data-feature]").forEach(el => {
+    const enabled = typeof FEATURES !== "undefined" && FEATURES[el.dataset.feature];
+    if (enabled) el.removeAttribute("hidden");
+    else el.remove();
+  });
+
   /* ---------- Year ---------- */
   document.getElementById("year").textContent = new Date().getFullYear();
 

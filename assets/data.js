@@ -2,6 +2,12 @@
 //  Portfolio content — edit this file to update the website.
 // ============================================================
 
+// Feature flags — flip to true to enable. Applied to any element
+// with a matching [data-feature] attribute (see script.js).
+const FEATURES = {
+  downloadResume: false, // set to true to show the "Download Résumé" button
+};
+
 // Inline SVG path data (viewBox 0 0 24 24) for company logos.
 // Inlined so they render offline and via file:// (no external fetch).
 const LOGOS = {
