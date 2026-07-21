@@ -44,7 +44,9 @@
   <main>
     <!-- Hero -->
     <section class="hero" id="hero">
+      <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
       <div class="hero__bg"></div>
+      <div class="hero__scrim"></div>
       <div class="container hero__inner">
         <p class="hero__eyebrow">👋 Hello, I'm</p>
         <h1 class="hero__title">Nripendra Pratap Singh</h1>
@@ -156,11 +158,6 @@
             <span class="contact__label">Email</span>
             <span class="contact__value">nripendra91@gmail.com</span>
           </a>
-          <a class="contact__card" href="tel:+353899616675">
-            <span class="contact__icon">📱</span>
-            <span class="contact__label">Phone</span>
-            <span class="contact__value">+353 899 616 675</span>
-          </a>
           <a class="contact__card" href="https://www.linkedin.com/in/nripendrapratapsingh" target="_blank" rel="noopener">
             <span class="contact__icon">💼</span>
             <span class="contact__label">LinkedIn</span>
@@ -184,6 +181,7 @@
   </footer>
 
   <script src="assets/data.js"></script>
+  <script src="assets/hero-bg.js"></script>
   <script src="assets/script.js"></script>
 </body>
 </html>
