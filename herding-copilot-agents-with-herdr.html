@@ -165,15 +165,15 @@ herdr</code></pre>
           <pre><code># Shaun (the clever one) refactors the auth module
 herdr pane run w1:p1 "copilot -p 'Refactor src/auth into smaller modules, keep tests green'"
 
-          # Shirley (does the heavy lifting) writes the missing tests
+# Shirley (does the heavy lifting) writes the missing tests
 herdr pane split w1:p1 --direction right
 herdr pane run w1:p2 "copilot -p 'Add unit tests for the billing service, aim for 90% coverage'"
 
-          # Timmy (the little one) tidies up the docs
+# Timmy (the little one) tidies up the docs
 herdr pane split w1:p2 --direction down
 herdr pane run w1:p3 "copilot -p 'Update the README and API docs to match the new auth module'"
 
-          # Nuts (a bit chaotic) chases the flaky integration test
+# Nuts (a bit chaotic) chases the flaky integration test
 herdr pane split w1:p3 --direction down
 herdr pane run w1:p4 "copilot -p 'Find and fix the flaky test in tests/integration/checkout_spec'"</code></pre>
           <p>
