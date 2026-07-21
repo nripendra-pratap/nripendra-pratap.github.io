@@ -19,7 +19,7 @@ const ARTICLES = [
     title: "Herding Copilot Agents with herdr 🐑",
     date: "2026-07-21",
     readingMins: 8,
-    summary: "Running one AI agent is easy — running a flock is where it gets messy. A field guide to herding GitHub Copilot CLI agents in a single terminal with herdr, why it beats a wall of windows, and a sheep-farm example with a watchdog that monitors the flock.",
+    summary: "Running one AI agent is easy. Running a flock is where it gets messy. A field guide to herding GitHub Copilot CLI agents in a single terminal with herdr, why it beats a wall of windows, and a sheep-farm example with a watchdog that monitors the flock.",
     url: "herding-copilot-agents-with-herdr.html",
     tags: ["AI Agents", "Copilot CLI", "Terminal", "Orchestration"]
   }

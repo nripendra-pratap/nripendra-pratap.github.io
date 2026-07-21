@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Herding Copilot Agents with herdr — Nripendra Pratap Singh</title>
-  <meta name="description" content="A field guide to running a whole flock of GitHub Copilot CLI agents in one terminal with herdr — why it beats juggling windows, how to set it up, and a sheep-farm example with a watchdog that monitors the flock." />
+  <title>Herding Copilot Agents with herdr · Nripendra Pratap Singh</title>
+  <meta name="description" content="A field guide to running a whole flock of GitHub Copilot CLI agents in one terminal with herdr: why it beats juggling windows, how to set it up, and a sheep-farm example with a watchdog that monitors the flock." />
   <meta name="author" content="Nripendra Pratap Singh" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Herding Copilot Agents with herdr" />
-  <meta property="og:description" content="Run a whole flock of Copilot CLI agents in one terminal with herdr — set-up, why it beats extra windows, and a sheep-farm example with a watchdog." />
+  <meta property="og:description" content="Run a whole flock of Copilot CLI agents in one terminal with herdr: setup, why it beats extra windows, and a sheep-farm example with a watchdog." />
   <meta property="og:type" content="article" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -60,16 +60,16 @@
 
         <div class="prose">
           <p class="prose__lede">
-            Picture a farm. Not a metaphorical, hand-wavy farm — an actual one, with muddy boots and a
+            Picture a farm. Not a metaphorical, hand-wavy farm. An actual one, with muddy boots and a
             thermos of tea. Each <strong>sheep</strong> is a GitHub Copilot CLI agent, quietly chewing
             through a task you handed it. The <strong>pasture</strong> is your terminal. And the border
             collie streaking across the field, keeping the whole flock together, is a little tool called
             <a href="https://herdr.dev" target="_blank" rel="noopener">herdr</a>.
           </p>
           <p>
-            This is a field guide to running a <em>flock</em> of agents instead of a single, lonely one —
-            why you'd want to, why it beats a screen full of terminal windows, how to set it up, and a
-            worked example where a watchdog keeps an eye on every sheep we let loose.
+            This is a field guide to running a <em>flock</em> of agents instead of a single, lonely one.
+            It covers why you'd want to, why it beats a screen full of terminal windows, how to set it up,
+            and a worked example where a watchdog keeps an eye on every sheep we let loose.
           </p>
 
           <h2>Life before a sheepdog</h2>
@@ -84,26 +84,26 @@
             Within twenty minutes you're the farmer who let every gate swing open at once:
           </p>
           <ul>
-            <li><strong>You can't see who's stuck.</strong> An agent finished five minutes ago, or is blocked waiting for you to approve something — and you have no idea which window it's in.</li>
+            <li><strong>You can't see who's stuck.</strong> An agent finished five minutes ago, or it's blocked waiting for you to approve something, and you have no idea which window it's in.</li>
             <li><strong>Context-switching tax.</strong> You alt-tab through a maze, re-reading each pane to remember what it was even doing.</li>
             <li><strong>Lost sheep.</strong> Close the wrong window and a half-finished task is gone. Put your laptop to sleep and long-running agents wander off.</li>
             <li><strong>No coordination.</strong> The test-writing agent has no idea the refactor agent just finished. They can't hand work to each other.</li>
           </ul>
           <p>
             One agent is a pet. A dozen agents in a dozen windows is a stampede. What you're missing isn't
-            more windows — it's a <strong>sheepdog</strong>.
+            more windows. It's a <strong>sheepdog</strong>.
           </p>
 
           <h2>Why you need a herdr</h2>
           <p>
             <a href="https://herdr.dev" target="_blank" rel="noopener">herdr</a> is an
             <em>agent multiplexer that lives in your terminal</em>. If you've used <code>tmux</code>, the
-            shape is familiar — panes, tabs, sessions — but herdr is built specifically for AI agents, so
+            shape is familiar: panes, tabs, sessions. But herdr is built specifically for AI agents, so
             it understands things tmux never could:
           </p>
           <ul>
-            <li><strong>State at a glance.</strong> Every pane shows whether its agent is <em>working</em>, <em>blocked</em> (waiting on you), or <em>done</em> — the exact thing you were squinting to figure out manually.</li>
-            <li><strong>Detach and walk away.</strong> Sessions survive disconnects and restarts. Close your laptop, reattach later from any terminal — even over SSH — and the flock is right where you left it.</li>
+            <li><strong>State at a glance.</strong> Every pane shows whether its agent is <em>working</em>, <em>blocked</em> (waiting on you), or <em>done</em>. That's the exact thing you were squinting to figure out manually.</li>
+            <li><strong>Detach and walk away.</strong> Sessions survive disconnects and restarts. Close your laptop, reattach later from any terminal (even over SSH), and the flock is right where you left it.</li>
             <li><strong>Agents can drive herdr too.</strong> There's a plain socket API, so an agent can spawn its own panes, read another pane's output, and <em>wait</em> on a sibling to finish. This is the bit that makes our watchdog possible.</li>
             <li><strong>One small binary.</strong> No Electron, no browser tab pretending to be a terminal. It runs in whatever terminal you already use.</li>
           </ul>
@@ -119,7 +119,7 @@
           </p>
           <ul>
             <li><strong>You see the whole flock in one view.</strong> A sidebar lists every agent and its live status. No alt-tab archaeology to find the one that needs you.</li>
-            <li><strong>Real terminal views, not a wrapper.</strong> herdr shows the agent's actual output — not a re-interpreted, screen-scraped copy that drifts out of sync.</li>
+            <li><strong>Real terminal views, not a wrapper.</strong> herdr shows the agent's actual output, not a re-interpreted, screen-scraped copy that drifts out of sync.</li>
             <li><strong>Persistence is free.</strong> A pile of raw terminal windows dies with the app or the SSH connection. A herdr session keeps running and reattaches cleanly.</li>
             <li><strong>Agents coordinate.</strong> Separate windows are islands. Inside herdr, one agent can wait for another, read its logs, and pick up where it left off. That's the difference between a stampede and a flock.</li>
             <li><strong>Focus stays put.</strong> Spawning a new agent in a sibling pane doesn't yank your cursor away from what you're reading.</li>
@@ -138,7 +138,7 @@ brew install herdr</code></pre>
           <pre><code>cd ~/code/my-project
 herdr</code></pre>
           <p>
-            That drops you into a herdr session. Split panes and run an agent in each one — for us that's
+            Split panes and run an agent in each one. For us that's
             the GitHub Copilot CLI, <code>copilot</code>. Detach any time with <code>ctrl+b q</code>; come
             back with <code>herdr</code> and the flock is still grazing.
           </p>
@@ -156,24 +156,24 @@ herdr</code></pre>
 
           <h2>A day on the farm: naming the sheep</h2>
           <p>
-            Let's actually herd something. We'll spin up a small flock, and — because a nameless sheep is
-            just livestock — we'll give each one a name and a job. (Yes, they're the
+            Let's actually herd something. We'll spin up a small flock, and since a nameless sheep is
+            just livestock, we'll give each one a name and a job. (Yes, they're the
             <a href="https://en.wikipedia.org/wiki/Shaun_the_Sheep" target="_blank" rel="noopener">Shaun the Sheep</a>
             cast. No apologies.)
           </p>
           <p>Start herdr, then use its CLI to lay out the pasture and put each sheep to work:</p>
-          <pre><code># Shaun — the clever one — refactors the auth module
+          <pre><code># Shaun (the clever one) refactors the auth module
 herdr pane run w1:p1 "copilot -p 'Refactor src/auth into smaller modules, keep tests green'"
 
-# Shirley — does the heavy lifting — writes the missing tests
+          # Shirley (does the heavy lifting) writes the missing tests
 herdr pane split w1:p1 --direction right
 herdr pane run w1:p2 "copilot -p 'Add unit tests for the billing service, aim for 90% coverage'"
 
-# Timmy — the little one — tidies up the docs
+          # Timmy (the little one) tidies up the docs
 herdr pane split w1:p2 --direction down
 herdr pane run w1:p3 "copilot -p 'Update the README and API docs to match the new auth module'"
 
-# Nuts — a bit chaotic — chases the flaky integration test
+          # Nuts (a bit chaotic) chases the flaky integration test
 herdr pane split w1:p3 --direction down
 herdr pane run w1:p4 "copilot -p 'Find and fix the flaky test in tests/integration/checkout_spec'"</code></pre>
           <p>
@@ -189,9 +189,9 @@ herdr pane read w1:p4 --source recent --lines 50</code></pre>
 
           <h2>Bitzer, the watchdog 🐕</h2>
           <p>
-            Every good flock has a sheepdog. Ours is <strong>Bitzer</strong> — an agent whose entire job is
+            Every good flock has a sheepdog. Ours is <strong>Bitzer</strong>, an agent whose entire job is
             to watch the other agents. Because herdr exposes its controls as a socket API (and the agent
-            skill teaches Copilot how to use it), Bitzer isn't a special product feature — he's just another
+            skill teaches Copilot how to use it), Bitzer isn't a special product feature. He's just another
             Copilot agent running in his own pane, pointed at the rest of the flock.
           </p>
           <p>Give Bitzer his own pane and his marching orders:</p>
@@ -208,9 +208,9 @@ Loop:
   3. For any sheep that is BLOCKED waiting on input, raise a notification
      so the farmer (me) knows exactly which pane needs a decision.
   4. If a sheep has produced an error, note it and keep watching the rest.
-Report as a compact status table. Don't touch the sheep's work — just watch.</code></pre>
+Report as a compact status table. Don't touch the sheep's work, just watch.</code></pre>
           <p>
-            Under the hood, Bitzer leans on the same primitives we used by hand — the difference is
+            Under the hood, Bitzer leans on the same primitives we used by hand. The difference is that
             <em>he</em> runs them, on a loop, so we don't have to:
           </p>
           <pre><code># wait until a specific sheep is finished grazing
@@ -220,7 +220,7 @@ herdr agent wait w1:p1 --until done
 herdr pane read w1:p1 --source recent --lines 40
 
 # nudge the farmer when a sheep is stuck at a gate
-herdr notification show "Timmy (w1:p3) is blocked — needs your approval"</code></pre>
+herdr notification show "Timmy (w1:p3) is blocked, needs your approval"</code></pre>
           <blockquote>
             Now the loop closes. The sheep graze in parallel, Bitzer watches the field, and you watch
             Bitzer. When Shaun finishes his refactor, Bitzer summarises it and tells Shirley's tests to
@@ -231,7 +231,7 @@ herdr notification show "Timmy (w1:p3) is blocked — needs your approval"</code
           <h2>The takeaway</h2>
           <p>
             Running one agent is easy. The moment you want <em>several</em> working at once, the bottleneck
-            stops being the agents and becomes <strong>you</strong> — your attention, spread thin across a
+            stops being the agents and becomes <strong>you</strong>: your attention, spread thin across a
             wall of terminals. herdr fixes that by giving the flock a single pasture, a live status board,
             sessions that don't wander off, and an API so the agents can look after each other.
           </p>
@@ -244,7 +244,7 @@ herdr notification show "Timmy (w1:p3) is blocked — needs your approval"</code
           <div class="article__credit">
             <p>
               🙏 Big thanks to <a href="https://github.com/jj05y" target="_blank" rel="noopener">@jj05y</a>
-              for introducing me to herdr — this whole side quest is his fault (the good kind).
+              for introducing me to herdr. This whole side quest is his fault (the good kind).
             </p>
             <p>
               herdr is built by <a href="https://github.com/ogulcancelik/herdr" target="_blank" rel="noopener">Ogulcan Celik</a>.
