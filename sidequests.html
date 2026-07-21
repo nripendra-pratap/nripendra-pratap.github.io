@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>SideQuests — Nripendra Pratap Singh</title>
+  <meta name="description" content="SideQuests — articles and write-ups by Nripendra Pratap Singh on backend systems, distributed systems, C#, Python, cloud ops, and AI/agent tooling." />
+  <meta name="author" content="Nripendra Pratap Singh" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SideQuests — Nripendra Pratap Singh" />
+  <meta property="og:description" content="Articles and write-ups on backend systems, cloud ops, and AI/agent tooling." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>" />
+</head>
+<body>
+  <!-- Progress bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <a href="index.html" class="nav__brand">NPS<span class="dot">.</span></a>
+    <nav class="nav__links" id="navLinks">
+      <a href="index.html#about">About</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#education">Education</a>
+      <a href="sidequests.html" class="active">SideQuests</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 17a5 5 0 100-10 5 5 0 000 10zm0 2a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm0-18a1 1 0 011 1v1a1 1 0 11-2 0V2a1 1 0 011-1zm11 11a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM3 12a1 1 0 01-1 1H1a1 1 0 110-2h1a1 1 0 011 1zm16.07-7.07a1 1 0 010 1.41l-.71.71a1 1 0 11-1.41-1.41l.71-.71a1 1 0 011.41 0zM6.05 17.95a1 1 0 010 1.41l-.71.71a1 1 0 01-1.41-1.41l.71-.71a1 1 0 011.41 0zm12.02 1.41a1 1 0 01-1.41 0l-.71-.71a1 1 0 011.41-1.41l.71.71a1 1 0 010 1.41zM6.05 6.05a1 1 0 01-1.41 0l-.71-.71a1 1 0 011.41-1.41l.71.71a1 1 0 010 1.41z"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <button class="nav__burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Page header -->
+    <header class="page-header">
+      <div class="container page-header__inner">
+        <span class="section__tag">05 — Writing</span>
+        <h1 class="page-header__title">SideQuests<span class="dot">.</span></h1>
+        <p class="page-header__lede">
+          The main quest is shipping backend systems. <strong>SideQuests</strong> is where I write up the detours —
+          deep dives, experiments, and hard-won lessons from building software: distributed systems,
+          <strong>C#</strong> &amp; <strong>Python</strong>, cloud &amp; reliability, and AI / agent tooling.
+        </p>
+        <p class="page-header__note">📝 Nothing published yet — the first article is in progress. Check back soon.</p>
+      </div>
+    </header>
+
+    <!-- Articles -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__tag">Latest</span>
+          <h2 class="section__title">Articles</h2>
+        </div>
+        <div class="sq-grid" id="sq-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <span id="year"></span> Nripendra Pratap Singh</span>
+      <span class="footer__counter" data-feature="visitorCounter" hidden>
+        <span class="footer__counter-label">Visitors</span>
+        <img class="visitor-counter" alt="Visitor count"
+             src="https://count.getloli.com/@nripendra-pratap.github.io?name=nripendra-pratap.github.io&theme=3d-num&padding=6&offset=0&align=top&scale=1&pixelated=0&darkmode=auto" />
+      </span>
+      <span>Built with ❤️ &amp; vanilla JS</span>
+    </div>
+  </footer>
+
+  <script src="assets/data.js"></script>
+  <script src="assets/sidequests.js"></script>
+</body>
+</html>
