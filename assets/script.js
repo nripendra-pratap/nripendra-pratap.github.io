@@ -61,8 +61,10 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="tl-body">
           <div class="tl-head">
             <div>
-              <span class="tl-role">${job.role}</span>
-              ${job.current ? '<span class="tl-badge">Current</span>' : ""}
+              <span class="tl-title-row">
+                <span class="tl-role">${job.role}</span>
+                ${job.current ? '<span class="tl-badge">Current</span>' : ""}
+              </span>
               <div class="tl-company">${job.company} · ${job.location}</div>
             </div>
             <span class="tl-period">${job.period}</span>
