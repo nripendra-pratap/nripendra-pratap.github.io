@@ -12,6 +12,7 @@
   --shadow: 0 10px 30px -12px rgba(20, 24, 31, 0.18);
   --radius: 18px;
   --maxw: 1100px;
+  --card-hover: color-mix(in srgb, var(--surface) 95%, #000); /* light mode: subtly darker on hover */
 }
 
 [data-theme="dark"] {
@@ -25,6 +26,7 @@
   --brand-2: #22d3ee;
   --accent: #f472b6;
   --shadow: 0 14px 40px -14px rgba(0, 0, 0, 0.6);
+  --card-hover: color-mix(in srgb, var(--surface) 91%, #fff); /* dark mode: subtly lighter on hover */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -210,9 +212,9 @@ a { color: inherit; text-decoration: none; }
 .tl-card {
   position: relative; overflow: visible;
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 1.5rem 1.7rem; box-shadow: var(--shadow); transition: transform .25s ease, border-color .25s ease;
+  padding: 1.5rem 1.7rem; box-shadow: var(--shadow); transition: transform .25s ease, border-color .25s ease, background .25s ease;
 }
-.tl-card:hover { transform: translateX(6px); border-color: var(--brand); }
+.tl-card:hover { transform: translateX(6px); border-color: var(--brand); background: var(--card-hover); }
 
 /* Company logo as a module that pops out from the right side of the card on hover */
 .tl-notch {
@@ -322,9 +324,9 @@ a { color: inherit; text-decoration: none; }
 .sq-card {
   display: flex; flex-direction: column; gap: .6rem;
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 1.6rem; box-shadow: var(--shadow); transition: transform .25s ease, border-color .25s ease;
+  padding: 1.6rem; box-shadow: var(--shadow); transition: transform .25s ease, border-color .25s ease, background .25s ease;
 }
-.sq-card:hover { transform: translateY(-6px); border-color: var(--brand); }
+.sq-card:hover { transform: translateY(-6px); border-color: var(--brand); background: var(--card-hover); }
 .sq-card__meta { font-family: "JetBrains Mono", monospace; font-size: .8rem; color: var(--text-soft); }
 .sq-card__title { font-size: 1.2rem; font-weight: 700; line-height: 1.3; }
 .sq-card__title a { color: var(--text); transition: color .2s ease; }
