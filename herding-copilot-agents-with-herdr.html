@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Herding Copilot Agents with herdr — Nripendra Pratap Singh</title>
+  <meta name="description" content="A field guide to running a whole flock of GitHub Copilot CLI agents in one terminal with herdr — why it beats juggling windows, how to set it up, and a sheep-farm example with a watchdog that monitors the flock." />
+  <meta name="author" content="Nripendra Pratap Singh" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Herding Copilot Agents with herdr" />
+  <meta property="og:description" content="Run a whole flock of Copilot CLI agents in one terminal with herdr — set-up, why it beats extra windows, and a sheep-farm example with a watchdog." />
+  <meta property="og:type" content="article" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐑</text></svg>" />
+</head>
+<body>
+  <!-- Progress bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <a href="index.html" class="nav__brand">NPS<span class="dot">.</span></a>
+    <nav class="nav__links" id="navLinks">
+      <a href="index.html#about">About</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#education">Education</a>
+      <a href="sidequests.html" class="active">SideQuests</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 17a5 5 0 100-10 5 5 0 000 10zm0 2a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm0-18a1 1 0 011 1v1a1 1 0 11-2 0V2a1 1 0 011-1zm11 11a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM3 12a1 1 0 01-1 1H1a1 1 0 110-2h1a1 1 0 011 1zm16.07-7.07a1 1 0 010 1.41l-.71.71a1 1 0 11-1.41-1.41l.71-.71a1 1 0 011.41 0zM6.05 17.95a1 1 0 010 1.41l-.71.71a1 1 0 01-1.41-1.41l.71-.71a1 1 0 011.41 0zm12.02 1.41a1 1 0 01-1.41 0l-.71-.71a1 1 0 011.41-1.41l.71.71a1 1 0 010 1.41zM6.05 6.05a1 1 0 01-1.41 0l-.71-.71a1 1 0 011.41-1.41l.71.71a1 1 0 010 1.41z"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <button class="nav__burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <article class="article">
+      <div class="container article__wrap">
+        <a class="article__back" href="sidequests.html">← All SideQuests</a>
+
+        <header class="article__header">
+          <span class="section__tag">SideQuest · Agent Tooling</span>
+          <h1 class="article__title">Herding Copilot Agents with <span class="mono-brand">herdr</span> 🐑</h1>
+          <div class="article__meta">
+            <span>Jul 21, 2026</span> · <span>8 min read</span>
+          </div>
+          <div class="article__tags">
+            <span>AI Agents</span><span>Copilot CLI</span><span>Terminal</span><span>Orchestration</span>
+          </div>
+        </header>
+
+        <div class="prose">
+          <p class="prose__lede">
+            Picture a farm. Not a metaphorical, hand-wavy farm — an actual one, with muddy boots and a
+            thermos of tea. Each <strong>sheep</strong> is a GitHub Copilot CLI agent, quietly chewing
+            through a task you handed it. The <strong>pasture</strong> is your terminal. And the border
+            collie streaking across the field, keeping the whole flock together, is a little tool called
+            <a href="https://herdr.dev" target="_blank" rel="noopener">herdr</a>.
+          </p>
+          <p>
+            This is a field guide to running a <em>flock</em> of agents instead of a single, lonely one —
+            why you'd want to, why it beats a screen full of terminal windows, how to set it up, and a
+            worked example where a watchdog keeps an eye on every sheep we let loose.
+          </p>
+
+          <h2>Life before a sheepdog</h2>
+          <p>
+            The first time you run an agent, you run <em>one</em>. You open a terminal, start
+            <code>copilot</code>, describe a task, and watch it work. Lovely. One sheep, one field, no drama.
+          </p>
+          <p>
+            Then the work grows. You want one agent refactoring a module, another writing tests, a third
+            chasing down a flaky build, and a fourth updating docs. So you do the obvious thing: you open
+            more windows. A tab here. A split there. A second terminal app because you ran out of room.
+            Within twenty minutes you're the farmer who let every gate swing open at once:
+          </p>
+          <ul>
+            <li><strong>You can't see who's stuck.</strong> An agent finished five minutes ago, or is blocked waiting for you to approve something — and you have no idea which window it's in.</li>
+            <li><strong>Context-switching tax.</strong> You alt-tab through a maze, re-reading each pane to remember what it was even doing.</li>
+            <li><strong>Lost sheep.</strong> Close the wrong window and a half-finished task is gone. Put your laptop to sleep and long-running agents wander off.</li>
+            <li><strong>No coordination.</strong> The test-writing agent has no idea the refactor agent just finished. They can't hand work to each other.</li>
+          </ul>
+          <p>
+            One agent is a pet. A dozen agents in a dozen windows is a stampede. What you're missing isn't
+            more windows — it's a <strong>sheepdog</strong>.
+          </p>
+
+          <h2>Why you need a herdr</h2>
+          <p>
+            <a href="https://herdr.dev" target="_blank" rel="noopener">herdr</a> is an
+            <em>agent multiplexer that lives in your terminal</em>. If you've used <code>tmux</code>, the
+            shape is familiar — panes, tabs, sessions — but herdr is built specifically for AI agents, so
+            it understands things tmux never could:
+          </p>
+          <ul>
+            <li><strong>State at a glance.</strong> Every pane shows whether its agent is <em>working</em>, <em>blocked</em> (waiting on you), or <em>done</em> — the exact thing you were squinting to figure out manually.</li>
+            <li><strong>Detach and walk away.</strong> Sessions survive disconnects and restarts. Close your laptop, reattach later from any terminal — even over SSH — and the flock is right where you left it.</li>
+            <li><strong>Agents can drive herdr too.</strong> There's a plain socket API, so an agent can spawn its own panes, read another pane's output, and <em>wait</em> on a sibling to finish. This is the bit that makes our watchdog possible.</li>
+            <li><strong>One small binary.</strong> No Electron, no browser tab pretending to be a terminal. It runs in whatever terminal you already use.</li>
+          </ul>
+          <blockquote>
+            The mental model: you stop being a farmer who <em>watches</em> every sheep, and become one who
+            <em>glances</em> at the dog. herdr does the watching; you make the decisions.
+          </blockquote>
+
+          <h2>One pasture beats a dozen windows</h2>
+          <p>
+            "But I could just open more terminal windows." You could. Here's why the single-pasture
+            approach wins once you have more than one or two agents:
+          </p>
+          <ul>
+            <li><strong>You see the whole flock in one view.</strong> A sidebar lists every agent and its live status. No alt-tab archaeology to find the one that needs you.</li>
+            <li><strong>Real terminal views, not a wrapper.</strong> herdr shows the agent's actual output — not a re-interpreted, screen-scraped copy that drifts out of sync.</li>
+            <li><strong>Persistence is free.</strong> A pile of raw terminal windows dies with the app or the SSH connection. A herdr session keeps running and reattaches cleanly.</li>
+            <li><strong>Agents coordinate.</strong> Separate windows are islands. Inside herdr, one agent can wait for another, read its logs, and pick up where it left off. That's the difference between a stampede and a flock.</li>
+            <li><strong>Focus stays put.</strong> Spawning a new agent in a sibling pane doesn't yank your cursor away from what you're reading.</li>
+          </ul>
+
+          <h2>Setting up the farm</h2>
+          <p>Install herdr (macOS/Linux):</p>
+          <pre><code># one-liner
+curl -fsSL https://herdr.dev/install.sh | sh
+
+# or Homebrew
+brew install herdr</code></pre>
+          <p>On Windows it's in beta:</p>
+          <pre><code>powershell -ExecutionPolicy Bypass -c "irm https://herdr.dev/install.ps1 | iex"</code></pre>
+          <p>Then walk out into the field where the work lives and start it:</p>
+          <pre><code>cd ~/code/my-project
+herdr</code></pre>
+          <p>
+            That drops you into a herdr session. Split panes and run an agent in each one — for us that's
+            the GitHub Copilot CLI, <code>copilot</code>. Detach any time with <code>ctrl+b q</code>; come
+            back with <code>herdr</code> and the flock is still grazing.
+          </p>
+          <p>
+            The magic ingredient for coordination is the <strong>agent skill</strong>. It's a small
+            instruction file that teaches an agent how to talk to herdr from inside a pane. Install it once,
+            globally:
+          </p>
+          <pre><code>npx skills add ogulcancelik/herdr --skill herdr -g</code></pre>
+          <p>
+            With the skill installed, any Copilot agent you start <em>inside</em> a herdr pane (where
+            <code>HERDR_ENV=1</code> is set) can split panes, run commands, read output, and wait on other
+            agents. That's what turns a passive sheep into one that can call for the dog.
+          </p>
+
+          <h2>A day on the farm: naming the sheep</h2>
+          <p>
+            Let's actually herd something. We'll spin up a small flock, and — because a nameless sheep is
+            just livestock — we'll give each one a name and a job. (Yes, they're the
+            <a href="https://en.wikipedia.org/wiki/Shaun_the_Sheep" target="_blank" rel="noopener">Shaun the Sheep</a>
+            cast. No apologies.)
+          </p>
+          <p>Start herdr, then use its CLI to lay out the pasture and put each sheep to work:</p>
+          <pre><code># Shaun — the clever one — refactors the auth module
+herdr pane run w1:p1 "copilot -p 'Refactor src/auth into smaller modules, keep tests green'"
+
+# Shirley — does the heavy lifting — writes the missing tests
+herdr pane split w1:p1 --direction right
+herdr pane run w1:p2 "copilot -p 'Add unit tests for the billing service, aim for 90% coverage'"
+
+# Timmy — the little one — tidies up the docs
+herdr pane split w1:p2 --direction down
+herdr pane run w1:p3 "copilot -p 'Update the README and API docs to match the new auth module'"
+
+# Nuts — a bit chaotic — chases the flaky integration test
+herdr pane split w1:p3 --direction down
+herdr pane run w1:p4 "copilot -p 'Find and fix the flaky test in tests/integration/checkout_spec'"</code></pre>
+          <p>
+            Four sheep, one field, each pane labelled and showing its own live status. You can peek at any
+            of them without disturbing the others:
+          </p>
+          <pre><code># what has Nuts been up to?
+herdr pane read w1:p4 --source recent --lines 50</code></pre>
+          <p>
+            Already this is calmer than four windows. But we're still the ones checking on them. Let's hire
+            the dog.
+          </p>
+
+          <h2>Bitzer, the watchdog 🐕</h2>
+          <p>
+            Every good flock has a sheepdog. Ours is <strong>Bitzer</strong> — an agent whose entire job is
+            to watch the other agents. Because herdr exposes its controls as a socket API (and the agent
+            skill teaches Copilot how to use it), Bitzer isn't a special product feature — he's just another
+            Copilot agent running in his own pane, pointed at the rest of the flock.
+          </p>
+          <p>Give Bitzer his own pane and his marching orders:</p>
+          <pre><code>herdr tab create --label watchdog
+herdr pane run w1:p5 "copilot"</code></pre>
+          <p>Then, inside Bitzer's session, the brief:</p>
+          <pre><code>You are Bitzer, the watchdog for this herdr session.
+You are running inside a herdr pane (HERDR_ENV=1), so use the herdr CLI.
+
+Loop:
+  1. List the panes and each agent's state (working / blocked / done).
+  2. For any sheep that is DONE, read its last 40 lines and give me a
+     one-line summary of what it produced.
+  3. For any sheep that is BLOCKED waiting on input, raise a notification
+     so the farmer (me) knows exactly which pane needs a decision.
+  4. If a sheep has produced an error, note it and keep watching the rest.
+Report as a compact status table. Don't touch the sheep's work — just watch.</code></pre>
+          <p>
+            Under the hood, Bitzer leans on the same primitives we used by hand — the difference is
+            <em>he</em> runs them, on a loop, so we don't have to:
+          </p>
+          <pre><code># wait until a specific sheep is finished grazing
+herdr agent wait w1:p1 --until done
+
+# read what it left behind
+herdr pane read w1:p1 --source recent --lines 40
+
+# nudge the farmer when a sheep is stuck at a gate
+herdr notification show "Timmy (w1:p3) is blocked — needs your approval"</code></pre>
+          <blockquote>
+            Now the loop closes. The sheep graze in parallel, Bitzer watches the field, and you watch
+            Bitzer. When Shaun finishes his refactor, Bitzer summarises it and tells Shirley's tests to
+            re-run. When Nuts wanders into an error, you get one tidy notification instead of discovering it
+            an hour later in a window you forgot you had open.
+          </blockquote>
+
+          <h2>The takeaway</h2>
+          <p>
+            Running one agent is easy. The moment you want <em>several</em> working at once, the bottleneck
+            stops being the agents and becomes <strong>you</strong> — your attention, spread thin across a
+            wall of terminals. herdr fixes that by giving the flock a single pasture, a live status board,
+            sessions that don't wander off, and an API so the agents can look after each other.
+          </p>
+          <p>
+            You don't need to watch every sheep. You just need a good dog. 🐑🐕
+          </p>
+
+          <hr />
+
+          <div class="article__credit">
+            <p>
+              🙏 Big thanks to <a href="https://github.com/jj05y" target="_blank" rel="noopener">@jj05y</a>
+              for introducing me to herdr — this whole side quest is his fault (the good kind).
+            </p>
+            <p>
+              herdr is built by <a href="https://github.com/ogulcancelik/herdr" target="_blank" rel="noopener">Ogulcan Celik</a>.
+              Docs and downloads live at <a href="https://herdr.dev" target="_blank" rel="noopener">herdr.dev</a>.
+            </p>
+          </div>
+
+          <a class="btn btn--ghost article__more" href="sidequests.html">← Back to SideQuests</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <span id="year"></span> Nripendra Pratap Singh</span>
+      <span class="footer__counter" data-feature="visitorCounter" hidden>
+        <span class="footer__counter-label">Visitors</span>
+        <img class="visitor-counter" alt="Visitor count"
+             src="https://count.getloli.com/@nripendra-pratap.github.io?name=nripendra-pratap.github.io&theme=3d-num&padding=6&offset=0&align=top&scale=1&pixelated=0&darkmode=auto" />
+      </span>
+      <span>Built with ❤️ &amp; vanilla JS</span>
+    </div>
+  </footer>
+
+  <script src="assets/data.js"></script>
+  <script src="assets/common.js"></script>
+  <script>
+    // Article pages only need the shared chrome (theme, nav, menu,
+    // feature gates, year) plus the scroll-reveal observer.
+    document.addEventListener("DOMContentLoaded", () => {
+      Site.initChrome();
+      Site.observeReveals();
+    });
+  </script>
+</body>
+</html>
