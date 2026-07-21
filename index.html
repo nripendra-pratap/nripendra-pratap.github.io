@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nripendra Pratap Singh — Software Engineer</title>
+  <meta name="description" content="Nripendra Pratap Singh — Software Engineer with 8+ years building backend services in C# and Python. Currently SDE II at Microsoft, Dublin." />
+  <meta name="author" content="Nripendra Pratap Singh" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Nripendra Pratap Singh — Software Engineer" />
+  <meta property="og:description" content="Software Engineer with 8+ years building backend services in C# and Python. SDE II at Microsoft." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>" />
+</head>
+<body>
+  <!-- Progress bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <a href="#hero" class="nav__brand">NPS<span class="dot">.</span></a>
+    <nav class="nav__links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 17a5 5 0 100-10 5 5 0 000 10zm0 2a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm0-18a1 1 0 011 1v1a1 1 0 11-2 0V2a1 1 0 011-1zm11 11a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM3 12a1 1 0 01-1 1H1a1 1 0 110-2h1a1 1 0 011 1zm16.07-7.07a1 1 0 010 1.41l-.71.71a1 1 0 11-1.41-1.41l.71-.71a1 1 0 011.41 0zM6.05 17.95a1 1 0 010 1.41l-.71.71a1 1 0 01-1.41-1.41l.71-.71a1 1 0 011.41 0zm12.02 1.41a1 1 0 01-1.41 0l-.71-.71a1 1 0 011.41-1.41l.71.71a1 1 0 010 1.41zM6.05 6.05a1 1 0 01-1.41 0l-.71-.71a1 1 0 011.41-1.41l.71.71a1 1 0 010 1.41z"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <button class="nav__burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="hero__bg"></div>
+      <div class="container hero__inner">
+        <p class="hero__eyebrow">👋 Hello, I'm</p>
+        <h1 class="hero__title">Nripendra Pratap Singh</h1>
+        <h2 class="hero__subtitle"><span id="typed"></span><span class="cursor">|</span></h2>
+        <p class="hero__desc">
+          Software Engineer with <strong>8+ years</strong> building backend services in <strong>C#</strong> and <strong>Python</strong>.
+          Currently shipping features on Microsoft's spelling &amp; grammar service — serving over a <strong>billion requests a day</strong> across 26 regions.
+        </p>
+        <div class="hero__cta">
+          <a href="#contact" class="btn btn--primary">Get in touch</a>
+          <a href="assets/Nripendra-Pratap-Singh-Resume.pdf" class="btn btn--ghost" download>⬇ Download Résumé</a>
+          <a href="#experience" class="btn btn--ghost">View experience</a>
+        </div>
+        <div class="hero__meta">
+          <span>📍 Dublin, Ireland</span>
+          <span>🛂 Stamp 4</span>
+          <span class="pulse">🟢 Open to connect</span>
+        </div>
+      </div>
+      <a href="#about" class="scroll-hint" aria-label="Scroll down">↓</a>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+      <div class="container stats__grid">
+        <div class="stat" data-count="8"><span class="stat__value"><span class="stat__num">0</span><span class="stat__plus">+</span></span><p>Years Experience</p></div>
+        <div class="stat" data-count="1"><span class="stat__value"><span class="stat__num">0</span><span class="stat__plus">B+</span></span><p>Requests / Day</p></div>
+        <div class="stat" data-count="26"><span class="stat__value"><span class="stat__num">0</span></span><p>Global Regions</p></div>
+        <div class="stat" data-count="4"><span class="stat__value"><span class="stat__num">0</span></span><p>Industry Domains</p></div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__tag">01 — About</span>
+          <h2 class="section__title">Profile Summary</h2>
+        </div>
+        <div class="about reveal">
+          <p>
+            I'm a Software Engineer with a strong ownership mindset and firsthand delivery of microservices,
+            CI/CD, and production operations at global scale. I've worked across
+            <strong>e-commerce, capital markets, banking, and finance</strong>, turning complex systems into
+            reliable, well-monitored services.
+          </p>
+          <p>
+            Lately I've been deep in <strong>AI-enabled engineering workflows</strong> — co-building a Claude-based
+            agent with 7 MCP servers and 18+ skills that automates operational toil and cut developer cycle time by ~75%.
+          </p>
+          <div class="about__chips">
+            <span>Backend Services</span>
+            <span>Microservices</span>
+            <span>CI/CD</span>
+            <span>Production Ops</span>
+            <span>Cloud &amp; Sovereign</span>
+            <span>AI / MCP Workflows</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section section--alt" id="experience">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__tag">02 — Career</span>
+          <h2 class="section__title">Work Experience</h2>
+        </div>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__tag">03 — Toolbox</span>
+          <h2 class="section__title">Technical Skills</h2>
+        </div>
+        <div class="skills" id="skills-grid"></div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section section--alt" id="education">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__tag">04 — Learning</span>
+          <h2 class="section__title">Education</h2>
+        </div>
+        <div class="edu" id="edu-grid"></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__tag">05 — Say hello</span>
+          <h2 class="section__title">Let's Connect</h2>
+        </div>
+        <p class="contact__lead reveal">
+          Interested in working together, or just want to chat about backend systems and AI workflows? Reach out.
+        </p>
+        <div class="contact__grid reveal">
+          <a class="contact__card" href="mailto:nripendra91@gmail.com">
+            <span class="contact__icon">✉️</span>
+            <span class="contact__label">Email</span>
+            <span class="contact__value">nripendra91@gmail.com</span>
+          </a>
+          <a class="contact__card" href="tel:+353899616675">
+            <span class="contact__icon">📱</span>
+            <span class="contact__label">Phone</span>
+            <span class="contact__value">+353 899 616 675</span>
+          </a>
+          <a class="contact__card" href="https://www.linkedin.com/in/nripendrapratapsingh" target="_blank" rel="noopener">
+            <span class="contact__icon">💼</span>
+            <span class="contact__label">LinkedIn</span>
+            <span class="contact__value">in/nripendrapratapsingh</span>
+          </a>
+          <a class="contact__card" href="https://maps.google.com/?q=Dublin,Ireland" target="_blank" rel="noopener">
+            <span class="contact__icon">📍</span>
+            <span class="contact__label">Location</span>
+            <span class="contact__value">Dublin, Ireland</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <span id="year"></span> Nripendra Pratap Singh</span>
+      <span>Built with ❤️ &amp; vanilla JS</span>
+    </div>
+  </footer>
+
+  <script src="assets/data.js"></script>
+  <script src="assets/script.js"></script>
+</body>
+</html>
