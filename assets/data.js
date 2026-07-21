@@ -6,6 +6,7 @@
 // with a matching [data-feature] attribute (see script.js).
 const FEATURES = {
   downloadResume: false, // set to true to show the "Download Résumé" button
+  visitorCounter: true,  // set to false to hide the footer visitor counter (moe-counter)
 };
 
 // Inline SVG path data (viewBox 0 0 24 24) for company logos.
