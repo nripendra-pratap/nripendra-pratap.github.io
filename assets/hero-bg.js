@@ -28,6 +28,8 @@
   function resize() {
     DPR = Math.min(window.devicePixelRatio || 1, 2);
     const r = canvas.getBoundingClientRect();
+    if (r.width < 1 || r.height < 1) return;               // not laid out yet
+    if (Math.abs(r.width - W) < 1 && Math.abs(r.height - H) < 1) return; // unchanged
     W = r.width; H = r.height;
     canvas.width = Math.round(W * DPR);
     canvas.height = Math.round(H * DPR);
@@ -308,6 +310,17 @@
   }
 
   window.addEventListener("resize", resize);
+
+  // Re-measure whenever the canvas actually gets/changes its size. This fixes
+  // hosted (network) loads where the first measurement can happen before CSS
+  // and fonts are fully applied, which otherwise stretches the animation.
+  if ("ResizeObserver" in window) {
+    new ResizeObserver(() => resize()).observe(canvas);
+  }
+  window.addEventListener("load", resize);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(resize).catch(() => {});
+  }
 
   // Update palette live when the theme toggles.
   new MutationObserver(() => { COL = palette(); })

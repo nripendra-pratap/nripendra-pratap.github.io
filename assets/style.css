@@ -100,22 +100,24 @@ a { color: inherit; text-decoration: none; }
 }
 .hero__canvas {
   position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%;
-  opacity: .55;
+  opacity: .5;
 }
-[data-theme="dark"] .hero__canvas { opacity: .68; }
+[data-theme="dark"] .hero__canvas { opacity: .6; }
 .hero__bg {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
-    radial-gradient(50% 50% at 15% 20%, color-mix(in srgb, var(--brand) 35%, transparent), transparent 60%),
-    radial-gradient(45% 45% at 85% 30%, color-mix(in srgb, var(--brand-2) 30%, transparent), transparent 60%),
-    radial-gradient(40% 40% at 60% 90%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%);
-  filter: blur(20px); opacity: .5; animation: floaty 14s ease-in-out infinite alternate;
+    radial-gradient(48% 48% at 15% 20%, color-mix(in srgb, var(--brand) 32%, transparent), transparent 60%),
+    radial-gradient(42% 42% at 74% 28%, color-mix(in srgb, var(--brand-2) 24%, transparent), transparent 55%),
+    radial-gradient(40% 40% at 58% 92%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 60%);
+  filter: blur(24px); opacity: .42; animation: floaty 14s ease-in-out infinite alternate;
 }
 .hero__scrim {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
   background:
-    linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 70%, transparent) 42%, transparent 78%),
-    linear-gradient(0deg, var(--bg) 2%, transparent 40%);
+    linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 72%, transparent) 40%, transparent 72%),
+    linear-gradient(270deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 45%, transparent) 15%, transparent 32%),
+    linear-gradient(0deg, var(--bg) 2%, transparent 42%),
+    radial-gradient(125% 95% at 50% 42%, transparent 52%, color-mix(in srgb, var(--bg) 60%, transparent) 100%);
 }
 @keyframes floaty { to { transform: translate3d(0, -20px, 0) scale(1.05); } }
 .hero__inner { position: relative; z-index: 3; }
