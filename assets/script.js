@@ -1,56 +1,11 @@
 // ============================================================
-//  Interactivity: theme, nav, typing, reveal, counters, render
+//  Home page: renders Experience / Skills / Education from data.js,
+//  plus animated counters, active-nav spy and the typing effect.
+//  Shared chrome (theme, nav, menu, reveals) lives in common.js.
 // ============================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  /* ---------- Feature gates ---------- */
-  // Elements with [data-feature] are shown only when the matching flag in
-  // FEATURES (data.js) is true; otherwise they are removed from the DOM.
-  document.querySelectorAll("[data-feature]").forEach(el => {
-    const enabled = typeof FEATURES !== "undefined" && FEATURES[el.dataset.feature];
-    if (enabled) el.removeAttribute("hidden");
-    else el.remove();
-  });
-
-  /* ---------- Year ---------- */
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-  /* ---------- Theme ---------- */
-  const themeToggle = document.getElementById("themeToggle");
-  const stored = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const startTheme = stored || (prefersDark ? "dark" : "light");
-  document.documentElement.setAttribute("data-theme", startTheme);
-  themeToggle.addEventListener("click", () => {
-    const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
-  });
-
-  /* ---------- Nav scroll state + progress ---------- */
-  const nav = document.getElementById("nav");
-  const progress = document.getElementById("scrollProgress");
-  const onScroll = () => {
-    nav.classList.toggle("scrolled", window.scrollY > 30);
-    const h = document.documentElement.scrollHeight - window.innerHeight;
-    progress.style.width = (window.scrollY / h) * 100 + "%";
-  };
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-
-  /* ---------- Mobile menu ---------- */
-  const burger = document.getElementById("navBurger");
-  const navLinks = document.getElementById("navLinks");
-  burger.addEventListener("click", () => {
-    burger.classList.toggle("open");
-    navLinks.classList.toggle("open");
-  });
-  navLinks.querySelectorAll("a").forEach(a =>
-    a.addEventListener("click", () => {
-      burger.classList.remove("open");
-      navLinks.classList.remove("open");
-    })
-  );
+  Site.initChrome();
 
   /* ---------- Render Experience ---------- */
   const timeline = document.getElementById("timeline");
@@ -101,16 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   `).join("");
 
-  /* ---------- Reveal on scroll ---------- */
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+  /* ---------- Reveal on scroll (after content is rendered) ---------- */
+  Site.observeReveals();
 
   /* ---------- Animated counters ---------- */
   const counters = document.querySelectorAll(".stat");

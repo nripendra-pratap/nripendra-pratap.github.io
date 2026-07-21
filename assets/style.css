@@ -29,7 +29,7 @@
   --card-hover: color-mix(in srgb, var(--surface) 91%, #fff); /* dark mode: subtly lighter on hover */
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
 body {
