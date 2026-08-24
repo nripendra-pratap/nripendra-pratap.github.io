@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Fitness — Nripendra Pratap Singh</title>
+  <meta name="description" content="A 12-week fat-loss and strength programme — calorie targets, macros, training split, progression and guardrails." />
+  <meta name="author" content="Nripendra Pratap Singh" />
+  <meta name="robots" content="noindex" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Fitness — Nripendra Pratap Singh" />
+  <meta property="og:description" content="A 12-week fat-loss and strength programme: targets, split, progression and guardrails." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏋️</text></svg>" />
+
+  <style>
+    /* ============ Fitness page — scoped styles ============
+       The shared stylesheet has no table or print rules, so the
+       data-heavy bits of this page bring their own, built on the
+       same theme tokens so light/dark keep working. */
+
+    .fit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+    .fit-stat {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.2rem; box-shadow: var(--shadow);
+      display: flex; flex-direction: column; gap: .15rem;
+    }
+    .fit-stat__label { font-size: .75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-soft); }
+    .fit-stat__value { font-size: 1.5rem; font-weight: 800; letter-spacing: -.5px; }
+    .fit-stat__note { font-family: "JetBrains Mono", monospace; font-size: .75rem; color: var(--text-soft); }
+
+    .fit-table-wrap {
+      overflow-x: auto; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+    }
+    .fit-table { width: 100%; border-collapse: collapse; min-width: 540px; }
+    .fit-table caption { text-align: left; padding: 1.1rem 1.2rem .2rem; font-weight: 700; }
+    .fit-table th, .fit-table td { padding: .75rem 1.2rem; text-align: left; border-bottom: 1px solid var(--border); }
+    .fit-table thead th {
+      font-family: "JetBrains Mono", monospace; font-size: .78rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .06em; color: var(--text-soft);
+      background: color-mix(in srgb, var(--brand) 7%, transparent);
+    }
+    .fit-table tbody tr:last-child td { border-bottom: 0; }
+    .fit-table tbody tr:hover { background: var(--card-hover); }
+    .fit-table td strong { font-weight: 600; }
+    .fit-num { font-family: "JetBrains Mono", monospace; white-space: nowrap; }
+
+    .fit-pill {
+      display: inline-block; font-family: "JetBrains Mono", monospace; font-size: .72rem;
+      padding: .2rem .55rem; border-radius: 999px; border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--brand) 10%, transparent); white-space: nowrap;
+    }
+    .fit-pill--rest { background: color-mix(in srgb, var(--text-soft) 12%, transparent); }
+
+    .fit-callout {
+      margin-top: 1.6rem; display: flex; gap: .9rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--brand); border-radius: 12px;
+      padding: 1.1rem 1.3rem; color: var(--text-soft); font-size: .95rem;
+    }
+    .fit-callout strong { color: var(--text); font-weight: 600; }
+    .fit-callout__icon { font-size: 1.2rem; line-height: 1.4; }
+
+    .fit-checks { display: grid; gap: .8rem; margin-top: .4rem; list-style: none; }
+    .fit-checks li {
+      display: flex; align-items: flex-start; gap: .8rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: .9rem 1.1rem;
+    }
+    .fit-checks__box {
+      flex: none; width: 18px; height: 18px; margin-top: .22rem;
+      border: 2px solid var(--text-soft); border-radius: 5px;
+    }
+
+    .fit-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+
+    /* ---------------- Print / A4 ---------------- */
+    @media print {
+      @page { size: A4; margin: 14mm; }
+      html, body { background: #fff !important; color: #000 !important; }
+      .nav, .footer, .scroll-progress, .fit-actions, .fit-noprint { display: none !important; }
+      .page-header { padding: 0 0 1rem !important; background: none !important; }
+      .section { padding: 1.1rem 0 !important; background: none !important; }
+      .section__head { margin-bottom: .9rem !important; }
+      .container { width: 100% !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .fit-table-wrap, .fit-stat, .fit-checks li, .fit-callout {
+        box-shadow: none !important; border: 1px solid #bbb !important; overflow: visible !important;
+      }
+      .fit-table { min-width: 0 !important; font-size: 10.5pt; }
+      .fit-table th, .fit-table td { padding: .4rem .55rem !important; border-bottom: 1px solid #ddd !important; }
+      .fit-table thead th { background: #f0f0f0 !important; color: #000 !important; }
+      .fit-table-wrap, .fit-checks li, table, tr, td, th { page-break-inside: avoid; break-inside: avoid; }
+      .fit-break { page-break-before: always; break-before: page; }
+      a[href]::after { content: ""; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <a href="index.html" class="nav__brand">NPS<span class="dot">.</span></a>
+    <nav class="nav__links" id="navLinks">
+      <a href="index.html#about">About</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#education">Education</a>
+      <a href="sidequests.html">SideQuests</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 17a5 5 0 100-10 5 5 0 000 10zm0 2a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm0-18a1 1 0 011 1v1a1 1 0 11-2 0V2a1 1 0 011-1zm11 11a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM3 12a1 1 0 01-1 1H1a1 1 0 110-2h1a1 1 0 011 1zm16.07-7.07a1 1 0 010 1.41l-.71.71a1 1 0 11-1.41-1.41l.71-.71a1 1 0 011.41 0zM6.05 17.95a1 1 0 010 1.41l-.71.71a1 1 0 01-1.41-1.41l.71-.71a1 1 0 011.41 0zm12.02 1.41a1 1 0 01-1.41 0l-.71-.71a1 1 0 011.41-1.41l.71.71a1 1 0 010 1.41zM6.05 6.05a1 1 0 01-1.41 0l-.71-.71a1 1 0 011.41-1.41l.71.71a1 1 0 010 1.41z"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <button class="nav__burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Page header -->
+    <header class="page-header">
+      <div class="container page-header__inner">
+        <span class="section__tag">06 — Training</span>
+        <h1 class="page-header__title">Fitness<span class="dot">.</span></h1>
+        <p class="page-header__lede">
+          A <strong>12-week</strong> fat-loss block built around holding lean mass, not just moving the scale.
+          Five training days, three mesocycles, and a calorie target that splits the deficit between
+          <strong>food</strong> and <strong>movement</strong> so intake never drops to BMR.
+        </p>
+        <p class="page-header__note">🏋️ Goal: 105 kg → ~95 kg at 16–17% body fat, lean mass held at 79–80 kg</p>
+      </div>
+    </header>
+
+    <!-- Baseline -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__tag">Starting point</span>
+          <h2 class="section__title">Baseline</h2>
+        </div>
+        <div class="fit-grid reveal">
+          <div class="fit-stat"><span class="fit-stat__label">Age</span><span class="fit-stat__value">32</span></div>
+          <div class="fit-stat"><span class="fit-stat__label">Height</span><span class="fit-stat__value">183 cm</span></div>
+          <div class="fit-stat"><span class="fit-stat__label">Weight</span><span class="fit-stat__value">105 kg</span></div>
+          <div class="fit-stat"><span class="fit-stat__label">Body fat</span><span class="fit-stat__value">24%</span><span class="fit-stat__note">InBody</span></div>
+          <div class="fit-stat"><span class="fit-stat__label">Fat mass</span><span class="fit-stat__value">25.2 kg</span></div>
+          <div class="fit-stat"><span class="fit-stat__label">Lean mass</span><span class="fit-stat__value">79.8 kg</span><span class="fit-stat__note">protect this</span></div>
+          <div class="fit-stat"><span class="fit-stat__label">BMR</span><span class="fit-stat__value">2,085</span><span class="fit-stat__note">kcal · measured</span></div>
+          <div class="fit-stat"><span class="fit-stat__label">TDEE</span><span class="fit-stat__value">~3,230</span><span class="fit-stat__note">kcal · BMR × 1.55</span></div>
+        </div>
+        <div class="fit-callout reveal">
+          <span class="fit-callout__icon">✅</span>
+          <div>
+            Measured BMR matches the Katch-McArdle estimate from lean body mass, so there's
+            <strong>no metabolic adaptation to correct for</strong> before starting.
+            Target pace is <strong>1 kg/week</strong> — the aggressive end, chosen deliberately over 0.75 kg/week.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nutrition -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__tag">Fuel</span>
+          <h2 class="section__title">Calories &amp; macros</h2>
+        </div>
+        <div class="fit-table-wrap reveal">
+          <table class="fit-table">
+            <thead>
+              <tr><th scope="col">Day</th><th scope="col">Calories</th><th scope="col">Protein</th><th scope="col">Carbs</th><th scope="col">Fat</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Mon – Sat</strong></td>
+                <td class="fit-num">2,400 kcal</td>
+                <td class="fit-num">200–210 g</td>
+                <td class="fit-num">230–245 g</td>
+                <td class="fit-num">65–70 g</td>
+              </tr>
+              <tr>
+                <td><strong>Sunday</strong> <span class="fit-pill">refeed</span></td>
+                <td class="fit-num">2,900 kcal</td>
+                <td class="fit-num">200–210 g</td>
+                <td class="fit-num">~360 g</td>
+                <td class="fit-num">65–70 g</td>
+              </tr>
+              <tr>
+                <td><strong>Weekly average</strong></td>
+                <td class="fit-num">~2,470 kcal</td>
+                <td colspan="3">Deficit ≈ 1,100 kcal/day vs TDEE</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="fit-callout reveal">
+          <span class="fit-callout__icon">🧠</span>
+          <div>
+            <strong>Why the deficit is split.</strong> Roughly <strong>830 kcal</strong> comes from food and
+            <strong>270 kcal</strong> from added NEAT (steps plus extended Zone 2 finishers). A pure food cut to
+            2,130 kcal would sit at BMR and put lean mass at risk. Protein is scaled off
+            <strong>lean body mass</strong>, not total bodyweight, and the fat number is a <strong>floor, not a target</strong>.
+          </div>
+        </div>
+
+        <div class="fit-grid reveal" style="margin-top:1.6rem">
+          <div class="fit-stat"><span class="fit-stat__label">Steps</span><span class="fit-stat__value">12,000+</span><span class="fit-stat__note">per day</span></div>
+          <div class="fit-stat"><span class="fit-stat__label">Sleep</span><span class="fit-stat__value">7–9 hrs</span><span class="fit-stat__note">non-negotiable</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Weekly split -->
+    <section class="section fit-break">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__tag">The week</span>
+          <h2 class="section__title">Training split</h2>
+        </div>
+        <div class="fit-table-wrap reveal">
+          <table class="fit-table">
+            <thead>
+              <tr><th scope="col">Day</th><th scope="col">Focus</th><th scope="col">Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Monday</strong></td><td>Lower — Strength</td><td>Heavy compounds, longest rests</td></tr>
+              <tr><td><strong>Tuesday</strong></td><td>Upper — Push</td><td>Press-led, chest / shoulders / triceps</td></tr>
+              <tr><td><strong>Wednesday</strong></td><td>Active recovery <span class="fit-pill fit-pill--rest">easy</span></td><td>Zone 2, mobility, steps</td></tr>
+              <tr><td><strong>Thursday</strong></td><td>Full body + conditioning</td><td>Conditioning block after lifting</td></tr>
+              <tr><td><strong>Friday</strong></td><td>Upper — Pull</td><td>Rows / chins, back and biceps</td></tr>
+              <tr><td><strong>Saturday</strong></td><td>Lower — Hypertrophy + core</td><td>Higher reps, shorter rests</td></tr>
+              <tr><td><strong>Sunday</strong></td><td>Rest <span class="fit-pill fit-pill--rest">refeed</span></td><td>Full rest day, carbs up</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="fit-callout reveal">
+          <span class="fit-callout__icon">📍</span>
+          <div>Westwood Leopardstown · <strong>5 sessions/week</strong> · 90 minutes · full equipment · intermediate level.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mesocycles -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__tag">Progression</span>
+          <h2 class="section__title">Three mesocycles</h2>
+        </div>
+        <div class="fit-table-wrap reveal">
+          <table class="fit-table">
+            <thead>
+              <tr><th scope="col">Block</th><th scope="col">Phase</th><th scope="col">Intensity</th><th scope="col">Prescription</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="fit-num"><strong>Weeks 1–4</strong></td><td>Foundation</td><td><span class="fit-pill">RPE 7</span></td>
+                <td>Compounds 4×6 · accessories 3×10–15</td>
+              </tr>
+              <tr>
+                <td class="fit-num"><strong>Weeks 5–8</strong></td><td>Intensification</td><td><span class="fit-pill">RPE 8</span></td>
+                <td>Loads +5–10%, reps down · supersets · HIIT 2×/week</td>
+              </tr>
+              <tr>
+                <td class="fit-num"><strong>Weeks 9–11</strong></td><td>Peak</td><td><span class="fit-pill">RPE 8 cap</span></td>
+                <td>Compounds 3×5 — capped at 8, <em>not</em> 9, because of deficit depth</td>
+              </tr>
+              <tr>
+                <td class="fit-num"><strong>Week 12</strong></td><td>Deload</td><td><span class="fit-pill fit-pill--rest">RPE 6</span></td>
+                <td>Volume −40% · Zone 2 only · calories back to maintenance</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projections -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__tag">Expected path</span>
+          <h2 class="section__title">Projections</h2>
+        </div>
+        <div class="fit-table-wrap reveal">
+          <table class="fit-table">
+            <thead>
+              <tr><th scope="col">Period</th><th scope="col">Rate</th><th scope="col">Landing point</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="fit-num"><strong>Weeks 1–6</strong></td><td>~1 kg/week</td><td class="fit-num">~99 kg</td></tr>
+              <tr><td class="fit-num"><strong>Weeks 7–12</strong></td><td>Slows to 0.6–0.8 kg/week</td><td class="fit-num">~95 kg @ 16–17% BF</td></tr>
+              <tr><td><strong>Lean mass</strong></td><td>Hold, don't chase</td><td class="fit-num">79–80 kg</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="fit-callout reveal">
+          <span class="fit-callout__icon">⚠️</span>
+          <div>
+            Week 1 will show a <strong>1.5–2 kg</strong> drop from water and glycogen. That is
+            <strong>not fat</strong> — do not recalibrate targets off it. The slowdown after week 6 is expected, not a failure.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guardrails -->
+    <section class="section section--alt fit-break">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__tag">Safety net</span>
+          <h2 class="section__title">Guardrails</h2>
+        </div>
+        <p class="page-header__lede reveal" style="margin-top:0">
+          Check weekly. If <strong>two or more</strong> appear in the same week, raise intake to
+          <strong>2,600 kcal</strong> and hold there before doing anything else.
+        </p>
+        <ul class="fit-checks reveal">
+          <li><span class="fit-checks__box"></span><span>Key lifts down <strong>two consecutive sessions</strong></span></li>
+          <li><span class="fit-checks__box"></span><span>Sleep quality declining</span></li>
+          <li><span class="fit-checks__box"></span><span>Persistent joint aches or elevated resting heart rate</span></li>
+          <li><span class="fit-checks__box"></span><span>InBody lean mass down <strong>more than 1 kg</strong></span></li>
+        </ul>
+
+        <div class="fit-callout reveal">
+          <span class="fit-callout__icon">📅</span>
+          <div>
+            <strong>InBody re-tests at Week 6 and Week 12</strong>, under consistent conditions —
+            same time of day, same hydration state, before training.
+          </div>
+        </div>
+
+        <div class="fit-actions fit-noprint">
+          <button class="btn btn--primary" onclick="window.print()">🖨️ Print this plan</button>
+          <a class="btn btn--ghost" href="index.html">← Back to portfolio</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="section">
+      <div class="container">
+        <div class="fit-callout reveal">
+          <span class="fit-callout__icon">ℹ️</span>
+          <div>
+            This is a personal training log and <strong>general fitness guidance — not medical advice</strong>.
+            Anyone adapting it should talk to a qualified professional first, and stop if health symptoms appear.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <span id="year"></span> Nripendra Pratap Singh</span>
+      <span class="footer__counter" data-feature="visitorCounter" hidden>
+        <span class="footer__counter-label">Visitors</span>
+        <img class="visitor-counter" alt="Visitor count"
+             src="https://count.getloli.com/@nripendra-pratap.github.io?name=nripendra-pratap.github.io&theme=3d-num&padding=6&offset=0&align=top&scale=1&pixelated=0&darkmode=auto" />
+      </span>
+      <span>Built with ❤️ &amp; vanilla JS</span>
+    </div>
+  </footer>
+
+  <script src="assets/data.js"></script>
+  <script src="assets/common.js"></script>
+  <script src="assets/fitness.js"></script>
+</body>
+</html>
