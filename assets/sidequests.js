@@ -9,13 +9,35 @@
 //   date: "2026-08-01",              // ISO date, used for sorting + display
 //   readingMins: 7,                   // estimated read time
 //   summary: "How we kept p99 latency flat while ...",
-//   url: "https://example.com/post",  // external link (Medium, dev.to, blog, ...)
+//   url: "https://example.com/post",  // link — external (http…) opens in a new
+//                                      // tab; a local page (e.g. "my-post.html")
+//                                      // opens in the same tab
 //   tags: ["Distributed Systems", "C#", "Azure"]
 // }
-const ARTICLES = [];
+const ARTICLES = [
+  {
+    title: "Railway Union, By the Numbers 🏏",
+    date: "2026-08-24",
+    readingMins: 6,
+    summary: "A living scorecard from the other side of my week. Every season of club cricket I have played for Railway Union CC in the Cricket Leinster open competitions, broken down with batting, bowling and fielding numbers, plus the innings I still think about.",
+    url: "railway-union-stats.html",
+    tags: ["Cricket", "Railway Union CC", "Stats", "Living Page"]
+  }
+];
 
 document.addEventListener("DOMContentLoaded", () => {
   Site.initChrome();
+
+  /* ---------- Page header note ---------- */
+  const note = document.getElementById("sq-note");
+  if (note) {
+    const n = ARTICLES.length;
+    note.textContent = !n
+      ? "📝 The first dispatch is being written — check back soon."
+      : n === 1
+        ? "📝 First dispatch is live — more detours to come."
+        : `📝 ${n} dispatches live — more detours to come.`;
+  }
 
   /* ---------- Render articles ---------- */
   const grid = document.getElementById("sq-grid");
@@ -34,18 +56,22 @@ document.addEventListener("DOMContentLoaded", () => {
         const dt = new Date(d);
         return isNaN(dt) ? d : dt.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
       };
-      grid.innerHTML = sorted.map(a => `
+      grid.innerHTML = sorted.map(a => {
+        const external = /^https?:\/\//i.test(a.url || "");
+        const linkAttrs = external ? ' target="_blank" rel="noopener"' : "";
+        return `
         <article class="sq-card reveal">
           <div class="sq-card__meta">
             <span>${fmt(a.date)}</span>${a.readingMins ? ` · <span>${a.readingMins} min read</span>` : ""}
           </div>
           <h3 class="sq-card__title">
-            ${a.url ? `<a href="${a.url}" target="_blank" rel="noopener">${a.title}</a>` : a.title}
+            ${a.url ? `<a href="${a.url}"${linkAttrs}>${a.title}</a>` : a.title}
           </h3>
           ${a.summary ? `<p class="sq-card__summary">${a.summary}</p>` : ""}
           ${a.tags && a.tags.length ? `<div class="sq-card__tags">${a.tags.map(t => `<span>${t}</span>`).join("")}</div>` : ""}
         </article>
-      `).join("");
+      `;
+      }).join("");
     }
   }
 
