@@ -81,6 +81,133 @@
 
     .fit-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
 
+    /* ---------------- Tabs ---------------- */
+    .fit-tabs {
+      display: flex; gap: .3rem; flex-wrap: wrap; width: fit-content; max-width: 100%;
+      margin-bottom: 1.5rem; padding: .35rem;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
+    }
+    .fit-tab {
+      font: inherit; font-size: .92rem; font-weight: 600; color: var(--text-soft);
+      background: none; border: 0; cursor: pointer; padding: .55rem 1.15rem; border-radius: 999px;
+      transition: background .2s ease, color .2s ease;
+    }
+    .fit-tab:hover { color: var(--text); }
+    .fit-tab.is-active { background: linear-gradient(120deg, var(--brand), var(--brand-2)); color: #fff; }
+    .fit-tab:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+    /* ---------------- Session logger ---------------- */
+    .fit-btn {
+      font: inherit; font-size: .9rem; font-weight: 600; cursor: pointer;
+      padding: .55rem 1rem; border-radius: 12px;
+      background: var(--surface); color: var(--text); border: 1px solid var(--border);
+      transition: border-color .2s ease, color .2s ease, transform .2s ease;
+    }
+    .fit-btn:hover { border-color: var(--brand); transform: translateY(-1px); }
+    .fit-btn--go { background: linear-gradient(120deg, var(--brand), var(--brand-2)); color: #fff; border-color: transparent; }
+    .fit-btn--danger:hover { border-color: var(--accent); color: var(--accent); }
+    .fit-btn--sm { padding: .32rem .7rem; font-size: .8rem; }
+    .fit-select {
+      font: inherit; font-size: .9rem; padding: .55rem .8rem; border-radius: 12px;
+      background: var(--surface); color: var(--text); border: 1px solid var(--border); cursor: pointer;
+    }
+    .fit-select--sm { padding: .35rem .5rem; font-size: .82rem; }
+
+    .fit-log__bar { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; margin-bottom: 1.1rem; }
+    .fit-log__spacer { flex: 1 1 auto; }
+    .fit-rest { display: inline-flex; align-items: center; gap: .45rem; font-size: .85rem; color: var(--text-soft); }
+    .fit-clock {
+      font-family: "JetBrains Mono", monospace; font-size: 1.35rem; font-weight: 500;
+      font-variant-numeric: tabular-nums; letter-spacing: -.5px; min-width: 4.5ch;
+    }
+    .fit-clock.is-live { color: var(--brand); }
+
+    /* The [hidden] attribute loses to any author display rule, so pin it
+       down — the rest bar and tab panels rely on it. */
+    [hidden] { display: none !important; }
+
+    .fit-rest-bar {
+      display: flex; align-items: center; gap: .9rem; margin-bottom: 1.1rem;
+      padding: .7rem 1.1rem; border-radius: 14px;
+      background: color-mix(in srgb, var(--brand) 10%, var(--surface)); border: 1px solid var(--border);
+    }
+    .fit-rest-bar__time { font-family: "JetBrains Mono", monospace; font-weight: 500; font-variant-numeric: tabular-nums; }
+    .fit-rest-bar__track { flex: 1; height: 6px; border-radius: 999px; background: var(--border); overflow: hidden; }
+    .fit-rest-bar__fill { height: 100%; width: 100%; background: linear-gradient(90deg, var(--brand), var(--brand-2)); transition: width 1s linear; }
+    .fit-rest-bar.is-done { background: color-mix(in srgb, var(--accent) 14%, var(--surface)); }
+
+    .fit-log__stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: .8rem; margin-bottom: 1.4rem; }
+    .fit-stat--sm { padding: .8rem 1rem; }
+    .fit-stat--sm .fit-stat__value { font-size: 1.2rem; }
+
+    .fit-ex {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 1.1rem 1.2rem; margin-bottom: 1rem;
+    }
+    .fit-ex__head { display: flex; align-items: baseline; gap: .7rem; flex-wrap: wrap; margin-bottom: .7rem; }
+    .fit-ex__name { font-size: 1.05rem; font-weight: 700; }
+    .fit-ex__target { font-family: "JetBrains Mono", monospace; font-size: .78rem; color: var(--text-soft); }
+    .fit-ex__kill {
+      margin-left: auto; background: none; border: 0; cursor: pointer; color: var(--text-soft);
+      font-size: 1.1rem; line-height: 1; padding: .2rem .35rem; border-radius: 6px;
+    }
+    .fit-ex__kill:hover { color: var(--accent); }
+
+    .fit-set {
+      display: grid; grid-template-columns: 2.2rem 120px 120px 2.6rem; gap: .5rem;
+      align-items: center; padding: .32rem 0;
+    }
+    .fit-set--time { grid-template-columns: 2.2rem 248px 2.6rem; }
+    .fit-set__n { font-family: "JetBrains Mono", monospace; font-size: .82rem; color: var(--text-soft); }
+    .fit-set__in {
+      font: inherit; font-size: .92rem; width: 100%; text-align: center;
+      padding: .45rem .3rem; border-radius: 10px;
+      background: var(--bg); color: var(--text); border: 1px solid var(--border);
+      -moz-appearance: textfield;
+    }
+    .fit-set__in::-webkit-outer-spin-button, .fit-set__in::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .fit-set__in:focus { outline: none; border-color: var(--brand); }
+    .fit-set__done {
+      font-size: .95rem; line-height: 1; cursor: pointer; padding: .42rem 0;
+      border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text-soft);
+      transition: background .18s ease, color .18s ease, border-color .18s ease;
+    }
+    .fit-set__done:hover { border-color: var(--brand); color: var(--brand); }
+    .fit-set.is-done .fit-set__done { background: var(--brand); border-color: var(--brand); color: #fff; }
+    .fit-set.is-done .fit-set__in { opacity: .62; }
+    .fit-set__row-head {
+      display: grid; grid-template-columns: 2.2rem 120px 120px 2.6rem; gap: .5rem;
+      font-family: "JetBrains Mono", monospace; font-size: .7rem; text-transform: uppercase;
+      letter-spacing: .05em; color: var(--text-soft); padding-bottom: .25rem;
+    }
+    .fit-set__row-head span { text-align: center; }
+    .fit-set__row-head span:first-child, .fit-set__row-head span:last-child { text-align: left; }
+    .fit-set__row-head--time { grid-template-columns: 2.2rem 248px 2.6rem; }
+    .fit-ex__addset { margin-top: .5rem; }
+
+    .fit-log__foot { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.2rem; }
+    .fit-log__note { margin-top: 1.6rem; }
+    .fit-log__note code {
+      font-family: "JetBrains Mono", monospace; font-size: .85em;
+      background: color-mix(in srgb, var(--brand) 12%, transparent); padding: .1rem .35rem; border-radius: 5px;
+    }
+    .fit-empty {
+      text-align: center; color: var(--text-soft); padding: 2.5rem 1rem;
+      border: 1px dashed var(--border); border-radius: var(--radius);
+    }
+    .fit-summary {
+      background: var(--surface); border: 1px solid var(--brand); border-radius: var(--radius);
+      padding: 1.4rem 1.5rem; margin-bottom: 1rem;
+    }
+    .fit-summary h3 { font-size: 1.15rem; margin-bottom: .7rem; }
+    .fit-summary__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: .9rem; }
+
+    @media (max-width: 560px) {
+      .fit-log__spacer { display: none; }
+      .fit-set, .fit-set__row-head { grid-template-columns: 1.8rem 1fr 1fr 2.4rem; }
+      .fit-set--time, .fit-set__row-head--time { grid-template-columns: 1.8rem 2fr 2.4rem; }
+    }
+
     /* ---------------- Print / A4 ---------------- */
     @media print {
       @page { size: A4; margin: 14mm; }
@@ -230,6 +357,15 @@
           <span class="section__tag">The week</span>
           <h2 class="section__title">Training split</h2>
         </div>
+
+        <div class="fit-tabs fit-noprint" role="tablist" aria-label="Training views">
+          <button class="fit-tab is-active" role="tab" id="tab-split"
+                  aria-controls="panel-split" aria-selected="true">Weekly split</button>
+          <button class="fit-tab" role="tab" id="tab-session"
+                  aria-controls="panel-session" aria-selected="false" tabindex="-1">Current session</button>
+        </div>
+
+        <div id="panel-split" role="tabpanel" aria-labelledby="tab-split" tabindex="0">
         <div class="fit-table-wrap reveal">
           <table class="fit-table">
             <thead>
@@ -250,6 +386,54 @@
           <span class="fit-callout__icon">📍</span>
           <div>Westwood Leopardstown · <strong>5 sessions/week</strong> · 90 minutes · full equipment · intermediate level.</div>
         </div>
+        </div><!-- /panel-split -->
+
+        <div id="panel-session" role="tabpanel" aria-labelledby="tab-session" tabindex="0" class="fit-noprint" hidden>
+          <div class="fit-log__bar">
+            <select class="fit-select" id="logDay" aria-label="Session day"></select>
+            <button class="fit-btn fit-btn--go" id="logStart">▶ Start session</button>
+            <span class="fit-clock" id="logClock">00:00</span>
+            <span class="fit-log__spacer"></span>
+            <label class="fit-rest">
+              Rest
+              <select class="fit-select fit-select--sm" id="logRest" aria-label="Rest timer length">
+                <option value="0">off</option>
+                <option value="60">60s</option>
+                <option value="90" selected>90s</option>
+                <option value="120">2 min</option>
+                <option value="180">3 min</option>
+              </select>
+            </label>
+            <button class="fit-btn fit-btn--danger" id="logReset">Reset</button>
+          </div>
+
+          <div class="fit-rest-bar" id="restBar" hidden>
+            <span class="fit-rest-bar__time" id="restTime">1:30</span>
+            <div class="fit-rest-bar__track"><div class="fit-rest-bar__fill" id="restFill"></div></div>
+            <button class="fit-btn fit-btn--sm" id="restSkip">Skip</button>
+          </div>
+
+          <div class="fit-log__stats">
+            <div class="fit-stat fit-stat--sm"><span class="fit-stat__label">Sets done</span><span class="fit-stat__value" id="statSets">0</span></div>
+            <div class="fit-stat fit-stat--sm"><span class="fit-stat__label">Volume</span><span class="fit-stat__value" id="statVol">0 kg</span></div>
+            <div class="fit-stat fit-stat--sm"><span class="fit-stat__label">Exercises</span><span class="fit-stat__value" id="statEx">0</span></div>
+          </div>
+
+          <div id="logList"></div>
+
+          <div class="fit-log__foot">
+            <button class="fit-btn" id="logAddEx">+ Add exercise</button>
+            <button class="fit-btn fit-btn--go" id="logFinish">Finish session</button>
+          </div>
+
+          <div class="fit-callout fit-log__note">
+            <span class="fit-callout__icon">🔒</span>
+            <div>
+              Stays in this browser tab only — held in <code>sessionStorage</code>, so a refresh won't lose it
+              but closing the tab clears everything. <strong>Nothing is uploaded, saved to the repo, or shared.</strong>
+            </div>
+          </div>
+        </div><!-- /panel-session -->
       </div>
     </section>
 
