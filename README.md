@@ -21,9 +21,10 @@ light/dark theme, subtle animations, and an animated hero. No frameworks, no bui
 There's no build step, so a couple of things are done by hand:
 
 - **Bump the asset version when you change CSS or JS.** Every page links its assets with a
-  `?v=YYYYMMDD` stamp (e.g. `assets/style.css?v=20260824`). GitHub Pages serves assets with
-  `Cache-Control: max-age=600`, so without a fresh stamp a visitor can load new HTML against
-  ten-minute-old CSS and get a badly broken layout. Bump the stamp in *all* HTML files together.
+  `?v=YYYYMMDD` stamp (e.g. `assets/style.css?v=20260824-2`, adding `-2`, `-3` … for more than
+  one deploy in a day). GitHub Pages serves assets with `Cache-Control: max-age=600`, so without
+  a fresh stamp a visitor can load new HTML against ten-minute-old CSS and get a badly broken
+  layout. Bump the stamp in *all* HTML files together.
 - **The nav is duplicated in every page.** Adding a SideQuest sub-page means updating the
   `.nav__menu` block in each HTML file and setting the right `.active` classes.
 - **Adding an article** means a new page at the repo root plus an entry in the `ARTICLES`

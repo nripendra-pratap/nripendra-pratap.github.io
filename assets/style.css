@@ -492,6 +492,36 @@ a { color: inherit; text-decoration: none; }
 .ck-copy { max-width: 760px; margin-bottom: .4rem; }
 .ck-copy > :first-child { margin-top: 0; }
 
+/* Collapsible "under the hood" panel — native <details>, closed by default. */
+.ck-details {
+  max-width: 760px; margin-bottom: 1.4rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.ck-details__summary {
+  display: flex; align-items: center; gap: .9rem; cursor: pointer;
+  padding: 1.05rem 1.3rem; list-style: none; border-radius: var(--radius);
+  transition: background .2s ease;
+}
+.ck-details__summary::-webkit-details-marker { display: none; }
+.ck-details__summary:hover { background: var(--card-hover); }
+.ck-details__summary:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+.ck-details__heading { display: flex; flex-direction: column; gap: .15rem; min-width: 0; }
+.ck-details__tag {
+  font-family: "JetBrains Mono", monospace; font-size: .72rem;
+  letter-spacing: .05em; text-transform: uppercase; color: var(--brand);
+}
+.ck-details__title { font-size: 1.05rem; font-weight: 700; line-height: 1.3; }
+.ck-details__hint {
+  margin-left: auto; font-family: "JetBrains Mono", monospace;
+  font-size: .78rem; color: var(--text-soft);
+}
+.ck-details__hint::after { content: attr(data-closed); }
+.ck-details[open] .ck-details__hint::after { content: attr(data-open); }
+.ck-details__chevron { flex: none; color: var(--text-soft); transition: transform .25s ease; }
+.ck-details[open] .ck-details__chevron { transform: rotate(180deg); }
+.ck-details__body { max-width: none; padding: .2rem 1.3rem 1.3rem; }
+
 .ck-highlights { list-style: none; padding-left: 0; margin: 1.4rem 0; display: grid; gap: .9rem; }
 .ck-highlight {
   margin: 0; background: var(--surface); border: 1px solid var(--border);

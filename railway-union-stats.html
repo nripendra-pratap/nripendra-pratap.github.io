@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/style.css?v=20260824" />
+  <link rel="stylesheet" href="assets/style.css?v=20260824-2" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏏</text></svg>" />
 </head>
 <body>
@@ -148,19 +148,24 @@
     <!-- Maintenance -->
     <section class="section">
       <div class="container">
-        <div class="section__head reveal">
-          <span class="section__tag">Under the hood</span>
-          <h2 class="section__title">How this page stays current</h2>
-        </div>
-        <div class="prose ck-copy reveal">
-          <p>
-            The whole page is driven by one small file, <code>assets/cricket-stats.js</code>. It holds a
-            <code>SEASONS</code> array with one entry per summer, and everything above (career totals,
-            averages, economy, strike rates, career-best score and figures) is <strong>derived</strong>
-            from it at render time. There is no second copy of the totals to forget to update.
-          </p>
-          <p>So the update ritual after a season, or a good week, is:</p>
-          <pre><code>// assets/cricket-stats.js
+        <details class="ck-details reveal">
+          <summary class="ck-details__summary">
+            <span class="ck-details__heading">
+              <span class="ck-details__tag">Under the hood</span>
+              <span class="ck-details__title">How this page stays current</span>
+            </span>
+            <span class="ck-details__hint" data-open="Hide" data-closed="Show"></span>
+            <svg class="ck-details__chevron" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <div class="prose ck-copy ck-details__body">
+            <p>
+              The whole page is driven by one small file, <code>assets/cricket-stats.js</code>. It holds a
+              <code>SEASONS</code> array with one entry per summer, and everything above (career totals,
+              averages, economy, strike rates, career-best score and figures) is <strong>derived</strong>
+              from it at render time. There is no second copy of the totals to forget to update.
+            </p>
+            <p>So the update ritual after a season, or a good week, is:</p>
+            <pre><code>// assets/cricket-stats.js
 
 const SEASONS = [
   {
@@ -173,28 +178,29 @@ const SEASONS = [
   },
   // ...older seasons below
 ];</code></pre>
-          <ol>
-            <li>Open the CricketStatz profile and pick the season from the <strong>Seas</strong> filter.</li>
-            <li>Copy the batting and bowling summary rows into that season's object.</li>
-            <li>Update <code>CAREER_SR</code> with the all-time strike rate (the one figure that cannot be recomputed, since balls faced are not published per season).</li>
-            <li>Bump <code>UPDATED</code>, add anything memorable to <code>HIGHLIGHTS</code>, and push.</li>
-          </ol>
-          <p>
-            A new season is a new object at the top of the array. Nothing else on the page needs touching.
-          </p>
-
-          <div class="article__credit">
+            <ol>
+              <li>Open the CricketStatz profile and pick the season from the <strong>Seas</strong> filter.</li>
+              <li>Copy the batting and bowling summary rows into that season's object.</li>
+              <li>Update <code>CAREER_SR</code> with the all-time strike rate (the one figure that cannot be recomputed, since balls faced are not published per season).</li>
+              <li>Bump <code>UPDATED</code>, add anything memorable to <code>HIGHLIGHTS</code>, and push.</li>
+            </ol>
             <p>
-              📊 All figures come from
-              <a href="https://www2.cricketstatz.com/ss/p.aspx?color=&amp;club=4530&amp;playerid=397222" data-ck-source target="_blank" rel="noopener">CricketStatz</a>,
-              the official statistics platform for the
-              <a href="https://www.cricketleinster.ie" target="_blank" rel="noopener">Cricket Leinster</a> open competitions.
-            </p>
-            <p>
-              🏏 Thanks to everyone at <a href="https://www.railwaycricket.com" target="_blank" rel="noopener">Railway Union CC</a>
-              who has scored, umpired, captained or driven a car full of kit to Stradbally on a wet Saturday.
+              A new season is a new object at the top of the array. Nothing else on the page needs touching.
             </p>
           </div>
+        </details>
+
+        <div class="article__credit ck-copy reveal">
+          <p>
+            📊 All figures come from
+            <a href="https://www2.cricketstatz.com/ss/p.aspx?color=&amp;club=4530&amp;playerid=397222" data-ck-source target="_blank" rel="noopener">CricketStatz</a>,
+            the official statistics platform for the
+            <a href="https://www.cricketleinster.ie" target="_blank" rel="noopener">Cricket Leinster</a> open competitions.
+          </p>
+          <p>
+            🏏 Thanks to everyone at <a href="https://www.railwaycricket.com" target="_blank" rel="noopener">Railway Union CC</a>
+            who has scored, umpired, captained or driven a car full of kit to Stradbally on a wet Saturday.
+          </p>
         </div>
       </div>
     </section>
@@ -212,8 +218,8 @@ const SEASONS = [
     </div>
   </footer>
 
-  <script src="assets/data.js?v=20260824"></script>
-  <script src="assets/common.js?v=20260824"></script>
-  <script src="assets/cricket-stats.js?v=20260824"></script>
+  <script src="assets/data.js?v=20260824-2"></script>
+  <script src="assets/common.js?v=20260824-2"></script>
+  <script src="assets/cricket-stats.js?v=20260824-2"></script>
 </body>
 </html>
