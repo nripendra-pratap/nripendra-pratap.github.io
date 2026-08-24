@@ -14,16 +14,7 @@
 //                                      // opens in the same tab
 //   tags: ["Distributed Systems", "C#", "Azure"]
 // }
-const ARTICLES = [
-  {
-    title: "Railway Union, By the Numbers 🏏",
-    date: "2026-08-24",
-    readingMins: 6,
-    summary: "A living scorecard from the other side of my week. Every season of club cricket I have played for Railway Union CC in the Cricket Leinster open competitions, broken down with batting, bowling and fielding numbers, plus the innings I still think about.",
-    url: "railway-union-stats.html",
-    tags: ["Cricket", "Railway Union CC", "Stats", "Living Page"]
-  }
-];
+const ARTICLES = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   Site.initChrome();
