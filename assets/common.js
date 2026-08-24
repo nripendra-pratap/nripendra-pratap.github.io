@@ -66,6 +66,28 @@ window.Site = (function () {
     );
   }
 
+  /* Nav dropdowns open on hover/focus via CSS. This only keeps aria-expanded
+     honest for screen readers and lets Escape dismiss an open menu. */
+  function initNavMenus() {
+    document.querySelectorAll(".nav__item").forEach(item => {
+      const parent = item.querySelector(".nav__parent");
+      if (!parent) return;
+      const set = open => parent.setAttribute("aria-expanded", String(open));
+      item.addEventListener("mouseenter", () => set(true));
+      item.addEventListener("mouseleave", () => set(false));
+      item.addEventListener("focusin", () => set(true));
+      item.addEventListener("focusout", e => {
+        if (!item.contains(e.relatedTarget)) set(false);
+      });
+      item.addEventListener("keydown", e => {
+        if (e.key === "Escape") {
+          set(false);
+          parent.blur();
+        }
+      });
+    });
+  }
+
   /* Order-independent startup — does not depend on rendered content. */
   function initChrome() {
     featureGates();
@@ -73,11 +95,21 @@ window.Site = (function () {
     initTheme();
     initNav();
     initMobileMenu();
+    initNavMenus();
   }
 
   /* Observe .reveal elements. Call AFTER dynamic content is rendered so
-     freshly-injected cards are picked up. */
+     freshly-injected cards are picked up.
+
+     rootMargin extends the viewport downwards so content sitting just below
+     the fold reveals on load instead of staying at opacity 0 until the user
+     scrolls. Without it, a short page can render as a blank void. */
   function observeReveals() {
+    const els = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window)) {
+      els.forEach(el => el.classList.add("visible"));
+      return;
+    }
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -85,8 +117,8 @@ window.Site = (function () {
           obs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
-    document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
+    }, { threshold: 0.12, rootMargin: "0px 0px 200px 0px" });
+    els.forEach(el => obs.observe(el));
   }
 
   return { initChrome, observeReveals };
