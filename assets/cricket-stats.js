@@ -30,6 +30,25 @@ const PROFILE = {
 // All-time batting strike rate, straight from the source page.
 const CAREER_SR = "84.36";
 
+// ---- Hero carousel -----------------------------------------------------
+// TO ADD A PHOTO: drop <slug>-1000.webp, <slug>-1800.webp and <slug>-1400.jpg
+// into assets/cricket/, then add one line here. Order = display order.
+//   focus — object-position, i.e. the part of the frame to keep when the
+//           photo is cropped to the hero. Nudge the second value up (e.g.
+//           "50% 30%") when the subject's head sits high in the frame.
+const PHOTO_DIR = "assets/cricket";
+const PHOTO_CAPTION = "Ed Sports Russell Court Trophy final · 2026";
+const SLIDE_MS = 6500;
+
+const PHOTOS = [
+  { slug: "bowling",  focus: "50% 26%", alt: "A Railway Union bowler in his delivery stride during the Russell Court Trophy final." },
+  { slug: "pull",     focus: "50% 26%", alt: "A Railway Union batter pulling a short ball away through the leg side." },
+  { slug: "cut",      focus: "50% 34%", alt: "A Railway Union batter cutting square of the wicket as the keeper watches." },
+  { slug: "fielding", focus: "50% 28%", alt: "Railway Union fielders sharing a laugh between deliveries." },
+  { slug: "medal",    focus: "50% 30%", alt: "A Railway Union player collecting his medal after the final." },
+  { slug: "team",     focus: "50% 26%", alt: "The Railway Union squad together with their medals after the final." }
+];
+
 // Newest season first. `balls`/`ballsBowled` drive the derived rates.
 const SEASONS = [
   {
@@ -131,6 +150,84 @@ const bowlAvg = b => (b.wickets ? round2(b.conceded / b.wickets) : "-");
 const econ = b => (b.ballsBowled ? round2(b.conceded / (b.ballsBowled / 6)) : "-");
 const bowlSR = b => (b.wickets ? round2(b.ballsBowled / b.wickets) : "-");
 
+/* ---------- Hero carousel ---------- */
+
+/* Cross-fading photo backdrop. Auto-advance is paused when the tab is
+   hidden, when the visitor asks for reduced motion, or on request via the
+   pause button (WCAG 2.2.2 — moving content needs a stop control). */
+function renderHero() {
+  const media = el("ck-hero-media");
+  if (!media || !PHOTOS.length) return;
+
+  media.innerHTML = PHOTOS.map((ph, i) => `
+    <div class="ck-hero__slide${i === 0 ? " is-active" : ""}">
+      <picture>
+        <source type="image/webp" sizes="100vw"
+                srcset="${PHOTO_DIR}/${ph.slug}-1000.webp 1000w, ${PHOTO_DIR}/${ph.slug}-1800.webp 1800w" />
+        <img src="${PHOTO_DIR}/${ph.slug}-1400.jpg" alt="${ph.alt}"
+             style="object-position:${ph.focus}" decoding="async"
+             ${i === 0 ? 'fetchpriority="high"' : 'loading="lazy"'} />
+      </picture>
+    </div>`).join("");
+
+  const caption = el("ck-hero-caption");
+  if (caption) caption.textContent = PHOTO_CAPTION;
+
+  const slides = [...media.querySelectorAll(".ck-hero__slide")];
+  const controls = el("ck-hero-controls");
+  if (slides.length < 2 || !controls) return;
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let index = 0;
+  let timer = null;
+  let paused = reduced.matches;
+
+  controls.innerHTML = `
+    <div class="ck-hero__dots" role="tablist" aria-label="Choose a photo">
+      ${PHOTOS.map((_, i) => `
+        <button class="ck-hero__dot${i === 0 ? " is-active" : ""}" type="button" role="tab"
+                aria-label="Photo ${i + 1} of ${PHOTOS.length}" aria-selected="${i === 0}"></button>`).join("")}
+    </div>
+    <button class="ck-hero__toggle" type="button" aria-label="Pause photos" aria-pressed="false">
+      <svg class="ck-hero__icon-pause" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M7 5h4v14H7zm6 0h4v14h-4z"/></svg>
+      <svg class="ck-hero__icon-play" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M8 5l11 7-11 7z"/></svg>
+    </button>`;
+
+  const dots = [...controls.querySelectorAll(".ck-hero__dot")];
+  const toggle = controls.querySelector(".ck-hero__toggle");
+
+  function show(next) {
+    index = (next + slides.length) % slides.length;
+    slides.forEach((s, i) => s.classList.toggle("is-active", i === index));
+    dots.forEach((d, i) => {
+      d.classList.toggle("is-active", i === index);
+      d.setAttribute("aria-selected", String(i === index));
+    });
+  }
+
+  function stop() { clearInterval(timer); timer = null; }
+  function start() {
+    stop();
+    if (paused || reduced.matches || document.hidden) return;
+    timer = setInterval(() => show(index + 1), SLIDE_MS);
+  }
+
+  function setPaused(state) {
+    paused = state;
+    toggle.setAttribute("aria-pressed", String(state));
+    toggle.setAttribute("aria-label", state ? "Play photos" : "Pause photos");
+    toggle.classList.toggle("is-paused", state);
+    start();
+  }
+
+  dots.forEach((d, i) => d.addEventListener("click", () => { show(i); start(); }));
+  toggle.addEventListener("click", () => setPaused(!paused));
+  document.addEventListener("visibilitychange", start);
+  reduced.addEventListener("change", () => setPaused(reduced.matches));
+
+  setPaused(paused);
+}
+
 /* ---------- Rendering ---------- */
 
 const el = (id) => document.getElementById(id);
@@ -230,6 +327,7 @@ document.addEventListener("DOMContentLoaded", () => {
   Site.initChrome();
   const c = career(SEASONS);
   renderMeta(c);
+  renderHero();
   renderCards(c);
   renderBatting(c);
   renderBowling(c);

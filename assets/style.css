@@ -449,6 +449,97 @@ a { color: inherit; text-decoration: none; }
 .article__more { margin-top: 2rem; }
 
 /* ===================== Cricket stats page ===================== */
+
+/* Photo hero — cross-fading backdrop with a scrim so the type stays legible
+   in both themes. Deliberately dark in light mode too: the scrim is what
+   guarantees contrast, so it must not follow the theme. */
+.ck-hero {
+  min-height: clamp(560px, 82vh, 820px);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  position: relative; isolation: isolate; overflow: hidden;
+  background: #080a10; border-bottom: 0;
+  padding-top: clamp(8rem, 16vw, 12rem);
+  padding-bottom: clamp(4rem, 7vw, 5.5rem);
+}
+.ck-hero__media { position: absolute; inset: 0; z-index: 0; }
+.ck-hero__slide {
+  position: absolute; inset: 0; opacity: 0;
+  transition: opacity 1.5s ease;
+}
+.ck-hero__slide.is-active { opacity: 1; }
+.ck-hero__slide picture { display: block; width: 100%; height: 100%; }
+.ck-hero__slide img {
+  width: 100%; height: 100%; display: block; object-fit: cover;
+  transform: scale(1.01);
+}
+.ck-hero__slide.is-active img { animation: ckHeroPan 12s ease-out forwards; }
+@keyframes ckHeroPan { from { transform: scale(1); } to { transform: scale(1.045); } }
+
+/* Three stacked washes: a bottom pedestal the type sits on, a left wash for
+   the column of text, and a faint brand tint to tie the photo to the palette. */
+.ck-hero__scrim {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(8,10,16,.72) 0%, rgba(8,10,16,.20) 26%,
+                            rgba(8,10,16,.60) 62%, rgba(8,10,16,.95) 100%),
+    linear-gradient(90deg, rgba(8,10,16,.80) 0%, rgba(8,10,16,.34) 46%, transparent 78%),
+    linear-gradient(115deg, rgba(79,70,229,.26) 0%, rgba(6,182,212,.10) 55%, transparent 90%);
+}
+.ck-hero__content { position: relative; z-index: 2; }
+.ck-hero .section__tag { color: #a5b4fc; }
+.ck-hero .page-header__title { color: #fff; text-shadow: 0 2px 34px rgba(0,0,0,.45); }
+.ck-hero .page-header__title .dot { color: #a5b4fc; }
+.ck-hero .page-header__lede { color: rgba(255,255,255,.86); }
+.ck-hero .page-header__lede strong { color: #fff; }
+.ck-hero .page-header__note {
+  color: #fff; background: rgba(255,255,255,.13);
+  border-color: rgba(255,255,255,.26); backdrop-filter: blur(8px);
+}
+
+.ck-hero__foot {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
+  padding-bottom: 1.15rem;
+}
+.ck-hero__foot-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+}
+.ck-hero__caption {
+  font-family: "JetBrains Mono", monospace; font-size: .74rem;
+  color: rgba(255,255,255,.66); letter-spacing: .02em;
+}
+.ck-hero__controls { display: flex; align-items: center; gap: .75rem; margin-left: auto; }
+.ck-hero__dots { display: flex; align-items: center; gap: .4rem; }
+.ck-hero__dot {
+  width: 22px; height: 3px; padding: 0; border: 0; border-radius: 2px; cursor: pointer;
+  background: rgba(255,255,255,.34);
+  transition: background .25s ease, width .25s ease;
+}
+.ck-hero__dot:hover { background: rgba(255,255,255,.6); }
+.ck-hero__dot.is-active { background: #fff; width: 36px; }
+.ck-hero__toggle {
+  display: grid; place-items: center; width: 26px; height: 26px; padding: 0;
+  border-radius: 50%; cursor: pointer; color: #fff;
+  background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.26);
+  transition: background .2s ease;
+}
+.ck-hero__toggle:hover { background: rgba(255,255,255,.28); }
+.ck-hero__icon-play { display: none; }
+.ck-hero__toggle.is-paused .ck-hero__icon-pause { display: none; }
+.ck-hero__toggle.is-paused .ck-hero__icon-play { display: block; }
+.ck-hero__dot:focus-visible, .ck-hero__toggle:focus-visible {
+  outline: 2px solid #fff; outline-offset: 3px;
+}
+
+@media (max-width: 780px) {
+  .ck-hero { min-height: clamp(480px, 76vh, 620px); padding-top: clamp(7rem, 22vw, 9rem); }
+  .ck-hero__caption { display: none; }
+  .ck-hero__controls { margin: 0 auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ck-hero__slide.is-active img { animation: none; transform: scale(1.02); }
+}
+
 .ck-cards {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.6rem 0 .4rem;
 }

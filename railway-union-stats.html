@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/style.css?v=20260824-2" />
+  <link rel="stylesheet" href="assets/style.css?v=20260824-3" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏏</text></svg>" />
 </head>
 <body>
@@ -52,9 +52,11 @@
   </header>
 
   <main>
-    <!-- Page header -->
-    <header class="page-header">
-      <div class="container page-header__inner">
+    <!-- Hero -->
+    <header class="page-header ck-hero">
+      <div class="ck-hero__media" id="ck-hero-media"></div>
+      <div class="ck-hero__scrim" aria-hidden="true"></div>
+      <div class="container page-header__inner ck-hero__content">
         <span class="section__tag">07 — Cricket</span>
         <h1 class="page-header__title">Railway Union<span class="dot">.</span></h1>
         <p class="page-header__lede">
@@ -65,6 +67,12 @@
           in between.
         </p>
         <p class="page-header__note">🏏 Figures last refreshed <span data-ck-updated>—</span></p>
+      </div>
+      <div class="ck-hero__foot">
+        <div class="container ck-hero__foot-inner">
+          <span class="ck-hero__caption" id="ck-hero-caption"></span>
+          <div class="ck-hero__controls" id="ck-hero-controls"></div>
+        </div>
       </div>
     </header>
 
@@ -187,6 +195,24 @@ const SEASONS = [
             <p>
               A new season is a new object at the top of the array. Nothing else on the page needs touching.
             </p>
+
+            <h3>Adding a photo to the hero</h3>
+            <p>
+              The rolling backdrop is driven by a <code>PHOTOS</code> array in the same file. To add one,
+              drop three files into <code>assets/cricket/</code> — <code>&lt;slug&gt;-1000.webp</code>,
+              <code>&lt;slug&gt;-1800.webp</code> and a <code>&lt;slug&gt;-1400.jpg</code> fallback, all
+              cropped to 16:9 — then add a single line:
+            </p>
+            <pre><code>const PHOTOS = [
+  { slug: "bowling", focus: "50% 26%", alt: "A bowler in his delivery stride." },
+  // ...add here
+];</code></pre>
+            <p>
+              <code>focus</code> is the CSS <code>object-position</code>, i.e. which part of the frame to
+              keep when it is cropped to the hero. Nudge the second value down towards
+              <code>20%</code> when a subject's head sits high in the frame. The carousel, the dots and
+              the paging all size themselves to however many photos are in the array.
+            </p>
           </div>
         </details>
 
@@ -196,6 +222,9 @@ const SEASONS = [
             <a href="https://www2.cricketstatz.com/ss/p.aspx?color=&amp;club=4530&amp;playerid=397222" data-ck-source target="_blank" rel="noopener">CricketStatz</a>,
             the official statistics platform for the
             <a href="https://www.cricketleinster.ie" target="_blank" rel="noopener">Cricket Leinster</a> open competitions.
+          </p>
+          <p>
+            📷 Hero photographs from the Ed Sports Russell Court Trophy final, 2026.
           </p>
           <p>
             🏏 Thanks to everyone at <a href="https://www.railwaycricket.com" target="_blank" rel="noopener">Railway Union CC</a>
@@ -218,8 +247,8 @@ const SEASONS = [
     </div>
   </footer>
 
-  <script src="assets/data.js?v=20260824-2"></script>
-  <script src="assets/common.js?v=20260824-2"></script>
-  <script src="assets/cricket-stats.js?v=20260824-2"></script>
+  <script src="assets/data.js?v=20260824-3"></script>
+  <script src="assets/common.js?v=20260824-3"></script>
+  <script src="assets/cricket-stats.js?v=20260824-3"></script>
 </body>
 </html>

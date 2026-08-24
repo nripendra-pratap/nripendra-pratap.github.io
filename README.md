@@ -29,6 +29,9 @@ There's no build step, so a couple of things are done by hand:
   `.nav__menu` block in each HTML file and setting the right `.active` classes.
 - **Adding an article** means a new page at the repo root plus an entry in the `ARTICLES`
   array in `assets/sidequests.js`.
+- **Adding a cricket hero photo** means three files in `assets/cricket/`
+  (`<slug>-1000.webp`, `<slug>-1800.webp`, `<slug>-1400.jpg`, all cropped 16:9) plus one line
+  in the `PHOTOS` array in `assets/cricket-stats.js`.
 
 ## A note
 
