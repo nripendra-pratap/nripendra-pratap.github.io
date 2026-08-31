@@ -10,6 +10,7 @@
    they are hints only, every field stays editable. */
 const DAY_PLAN = [
   { id: "mon", label: "Mon — Lower (Strength)", work: [
+    { name: "Trap-Bar Jump",           target: "3 × 3",  sets: 3 },
     { name: "Back Squat",              target: "4 × 6",  sets: 4 },
     { name: "Romanian Deadlift",       target: "4 × 6",  sets: 4 },
     { name: "Bulgarian Split Squat",   target: "3 × 10", sets: 3 },
@@ -18,6 +19,7 @@ const DAY_PLAN = [
     { name: "Standing Calf Raise",     target: "3 × 15", sets: 3 }
   ]},
   { id: "tue", label: "Tue — Upper (Push)", work: [
+    { name: "Rotational Scoop Throw",  target: "3 × 5/side", sets: 3 },
     { name: "Barbell Bench Press",     target: "4 × 6",  sets: 4 },
     { name: "Incline Dumbbell Press",  target: "3 × 10", sets: 3 },
     { name: "Seated DB Shoulder Press",target: "3 × 10", sets: 3 },
@@ -26,11 +28,16 @@ const DAY_PLAN = [
     { name: "Rope Pushdown",           target: "3 × 15", sets: 3 }
   ]},
   { id: "wed", label: "Wed — Active recovery", work: [
+    { name: "Bat Swings / Tee Work",   target: "25 min", sets: 1, type: "time" },
+    { name: "Thoracic Rotation",       target: "5 min",  sets: 1, type: "time" },
+    { name: "Hip Flexor Mobility",     target: "5 min",  sets: 1, type: "time" },
     { name: "Zone 2 Cardio",           target: "30 min", sets: 1, type: "time" },
     { name: "Mobility Flow",           target: "10 min", sets: 1, type: "time" },
     { name: "Easy Walk",               target: "20 min", sets: 1, type: "time" }
   ]},
   { id: "thu", label: "Thu — Full body + conditioning", work: [
+    { name: "Overhead-to-Floor Slam",  target: "3 × 4/side", sets: 3 },
+    { name: "Landmine Rotation",       target: "3 × 6/side", sets: 3 },
     { name: "Deadlift",                target: "4 × 6",  sets: 4 },
     { name: "DB Walking Lunge",        target: "3 × 12", sets: 3 },
     { name: "Pull-Up",                 target: "3 × 8",  sets: 3 },
@@ -39,12 +46,14 @@ const DAY_PLAN = [
     { name: "Conditioning Finisher",   target: "12 min", sets: 1, type: "time" }
   ]},
   { id: "fri", label: "Fri — Upper (Pull)", work: [
+    { name: "High-to-Low Cable Chop",  target: "3 × 5/side", sets: 3 },
     { name: "Barbell Row",             target: "4 × 6",  sets: 4 },
     { name: "Lat Pulldown",            target: "3 × 10", sets: 3 },
     { name: "Chest-Supported Row",     target: "3 × 12", sets: 3 },
     { name: "Face Pull",               target: "3 × 15", sets: 3 },
     { name: "EZ-Bar Curl",             target: "3 × 12", sets: 3 },
-    { name: "Hammer Curl",             target: "3 × 15", sets: 3 }
+    { name: "Hammer Curl",             target: "3 × 15", sets: 3 },
+    { name: "Dead Hang",               target: "2 × 45s",sets: 2, type: "time" }
   ]},
   { id: "sat", label: "Sat — Lower (Hypertrophy + core)", work: [
     { name: "Hack Squat",              target: "3 × 10", sets: 3 },
@@ -52,8 +61,9 @@ const DAY_PLAN = [
     { name: "Leg Extension",           target: "3 × 15", sets: 3 },
     { name: "Lying Leg Curl",          target: "3 × 15", sets: 3 },
     { name: "Hanging Leg Raise",       target: "3 × 15", sets: 3 },
-    { name: "Cable Crunch",            target: "3 × 15", sets: 3 },
-    { name: "Plank",                   target: "3 × 60s",sets: 3, type: "time" }
+    { name: "Pallof Press",            target: "3 × 20s/side", sets: 3, type: "time" },
+    { name: "Suitcase Carry",          target: "2 × 40 m/side", sets: 2, type: "time" },
+    { name: "Plate Pinch",             target: "2 × 30s",sets: 2, type: "time" }
   ]},
   { id: "sun", label: "Sun — Rest + refeed", work: [] }
 ];
