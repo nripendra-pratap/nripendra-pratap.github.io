@@ -28,12 +28,9 @@ const DAY_PLAN = [
     { name: "Rope Pushdown",           target: "3 × 15", sets: 3 }
   ]},
   { id: "wed", label: "Wed — Active recovery", work: [
-    { name: "Bat Swings / Tee Work",   target: "25 min", sets: 1, type: "time" },
-    { name: "Thoracic Rotation",       target: "5 min",  sets: 1, type: "time" },
-    { name: "Hip Flexor Mobility",     target: "5 min",  sets: 1, type: "time" },
+    { name: "Bat Swings / Tee Work",   target: "15 min", sets: 1, type: "time" },
     { name: "Zone 2 Cardio",           target: "30 min", sets: 1, type: "time" },
-    { name: "Mobility Flow",           target: "10 min", sets: 1, type: "time" },
-    { name: "Easy Walk",               target: "20 min", sets: 1, type: "time" }
+    { name: "Mobility Flow",           target: "15 min", sets: 1, type: "time" }
   ]},
   { id: "thu", label: "Thu — Full body + conditioning", work: [
     { name: "Overhead-to-Floor Slam",  target: "3 × 4/side", sets: 3 },
@@ -46,7 +43,6 @@ const DAY_PLAN = [
     { name: "Conditioning Finisher",   target: "12 min", sets: 1, type: "time" }
   ]},
   { id: "fri", label: "Fri — Upper (Pull)", work: [
-    { name: "High-to-Low Cable Chop",  target: "3 × 5/side", sets: 3 },
     { name: "Barbell Row",             target: "4 × 6",  sets: 4 },
     { name: "Lat Pulldown",            target: "3 × 10", sets: 3 },
     { name: "Chest-Supported Row",     target: "3 × 12", sets: 3 },
@@ -61,6 +57,7 @@ const DAY_PLAN = [
     { name: "Leg Extension",           target: "3 × 15", sets: 3 },
     { name: "Lying Leg Curl",          target: "3 × 15", sets: 3 },
     { name: "Hanging Leg Raise",       target: "3 × 15", sets: 3 },
+    { name: "High-to-Low Cable Chop",  target: "3 × 5/side", sets: 3 },
     { name: "Pallof Press",            target: "3 × 20s/side", sets: 3, type: "time" },
     { name: "Suitcase Carry",          target: "2 × 40 m/side", sets: 2, type: "time" },
     { name: "Plate Pinch",             target: "2 × 30s",sets: 2, type: "time" }
