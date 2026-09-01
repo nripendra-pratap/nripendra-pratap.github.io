@@ -49,7 +49,7 @@ const DAY_PLAN = [
     { name: "Face Pull",               target: "3 × 15", sets: 3 },
     { name: "EZ-Bar Curl",             target: "3 × 12", sets: 3 },
     { name: "Hammer Curl",             target: "3 × 15", sets: 3 },
-    { name: "Dead Hang",               target: "2 × 45s",sets: 2, type: "time" }
+    { name: "Dead Hang",               target: "2 × 45s", sets: 2, type: "time" }
   ]},
   { id: "sat", label: "Sat — Lower (Hypertrophy + core)", work: [
     { name: "Hack Squat",              target: "3 × 10", sets: 3 },
@@ -60,7 +60,7 @@ const DAY_PLAN = [
     { name: "High-to-Low Cable Chop",  target: "3 × 5/side", sets: 3 },
     { name: "Pallof Press",            target: "3 × 20s/side", sets: 3, type: "time" },
     { name: "Suitcase Carry",          target: "2 × 40 m/side", sets: 2, type: "time" },
-    { name: "Plate Pinch",             target: "2 × 30s",sets: 2, type: "time" }
+    { name: "Plate Pinch",             target: "2 × 30s", sets: 2, type: "time" }
   ]},
   { id: "sun", label: "Sun — Rest + refeed", work: [] }
 ];
